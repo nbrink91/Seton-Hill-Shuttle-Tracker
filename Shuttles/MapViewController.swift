@@ -159,7 +159,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     // Set the color of the Status Bar based on if it is in dark mode or not.
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if darkMode == true || mapView.mapType == kGMSTypeHybrid {
+        if darkMode == true{
             return .lightContent
         } else {
             return .default
