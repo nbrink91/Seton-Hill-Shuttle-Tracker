@@ -26,17 +26,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4kN-27-vyC" userLabel="Buttons">
-                                <rect key="frame" x="343" y="515" width="16" height="52"/>
+                                <rect key="frame" x="343" y="551" width="16" height="16"/>
                                 <subviews>
                                     <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myLocationButton-notSelected" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-y3-Sjm" userLabel="My Location Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="16" height="0.0"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="grs-N6-uGb" appends="YES" id="glz-Ca-bDf"/>
                                         </connections>
                                     </imageView>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ePS-dF-KiU" userLabel="Menu Button">
-                                        <rect key="frame" x="0.0" y="36" width="16" height="16"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="xOE-PJ-Xkp" appends="YES" id="MZg-oj-U3H"/>
@@ -117,33 +117,11 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleAspectFit" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7eQ-0d-gxi" userLabel="Map Type Stack View">
-                                        <rect key="frame" x="40" y="70" width="285" height="28"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDn-4y-2u8">
-                                                <rect key="frame" x="0.0" y="0.0" width="70" height="28"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CwA-w9-pKi">
-                                                <rect key="frame" x="90" y="0.0" width="195" height="29"/>
-                                                <segments>
-                                                    <segment title="Standard"/>
-                                                    <segment title="Hybrid"/>
-                                                </segments>
-                                                <color key="tintColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="mapTypeTapped:" destination="LSX-LX-X3j" eventType="valueChanged" id="Ro7-eJ-UQh"/>
-                                                </connections>
-                                            </segmentedControl>
-                                        </subviews>
-                                    </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3yH-Rd-EAf">
-                                        <rect key="frame" x="40" y="120" width="285" height="200"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="40" y="70" width="285" height="120"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="NRm-fr-8wj"/>
+                                            <constraint firstAttribute="height" constant="120" id="NRm-fr-8wj"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bDD-TF-g62">
                                             <size key="itemSize" width="100" height="118"/>
@@ -170,6 +148,7 @@
                                                         </label>
                                                     </subviews>
                                                 </view>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="qDr-yS-bKc" secondAttribute="trailing" id="05Y-eQ-JJ7"/>
                                                     <constraint firstItem="qDr-yS-bKc" firstAttribute="leading" secondItem="L5D-hw-liL" secondAttribute="leading" id="9lj-Qb-wdh"/>
@@ -187,19 +166,41 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7eQ-0d-gxi" userLabel="Map Type Stack View">
+                                        <rect key="frame" x="40" y="210" width="285" height="28"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDn-4y-2u8">
+                                                <rect key="frame" x="0.0" y="0.0" width="70" height="28"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CwA-w9-pKi">
+                                                <rect key="frame" x="90" y="0.0" width="195" height="29"/>
+                                                <segments>
+                                                    <segment title="Standard"/>
+                                                    <segment title="Hybrid"/>
+                                                </segments>
+                                                <color key="tintColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="mapTypeTapped:" destination="LSX-LX-X3j" eventType="valueChanged" id="Ro7-eJ-UQh"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3yH-Rd-EAf" secondAttribute="trailing" constant="40" id="2S1-9v-W5e"/>
                                     <constraint firstItem="NkN-r5-EHg" firstAttribute="top" secondItem="uSk-Su-kYI" secondAttribute="top" constant="20" id="4QS-GY-AAC"/>
                                     <constraint firstItem="7eQ-0d-gxi" firstAttribute="leading" secondItem="uSk-Su-kYI" secondAttribute="leading" constant="40" id="6fK-Mb-ckO"/>
-                                    <constraint firstItem="7eQ-0d-gxi" firstAttribute="top" secondItem="NkN-r5-EHg" secondAttribute="bottom" constant="20" id="71o-Eh-BP5"/>
-                                    <constraint firstAttribute="trailing" secondItem="3yH-Rd-EAf" secondAttribute="trailing" constant="40" id="OTY-2d-iid"/>
                                     <constraint firstAttribute="height" constant="400" id="TTP-vR-p3u"/>
-                                    <constraint firstItem="3yH-Rd-EAf" firstAttribute="top" secondItem="7eQ-0d-gxi" secondAttribute="bottom" constant="22" id="bTy-Gf-tnx"/>
+                                    <constraint firstItem="3yH-Rd-EAf" firstAttribute="top" secondItem="NkN-r5-EHg" secondAttribute="bottom" constant="20" id="eMu-pX-rNc"/>
+                                    <constraint firstItem="7eQ-0d-gxi" firstAttribute="top" secondItem="3yH-Rd-EAf" secondAttribute="bottom" constant="20" id="qyD-C6-J9D"/>
                                     <constraint firstAttribute="trailing" secondItem="7eQ-0d-gxi" secondAttribute="trailing" constant="40" id="r1C-Ht-Qu2"/>
                                     <constraint firstItem="NkN-r5-EHg" firstAttribute="leading" secondItem="uSk-Su-kYI" secondAttribute="leading" constant="20" id="sCl-NT-7hJ"/>
+                                    <constraint firstItem="3yH-Rd-EAf" firstAttribute="leading" secondItem="uSk-Su-kYI" secondAttribute="leading" constant="40" id="vli-CU-8p4"/>
                                     <constraint firstAttribute="trailing" secondItem="NkN-r5-EHg" secondAttribute="trailing" constant="20" id="wug-cX-PDf"/>
-                                    <constraint firstItem="3yH-Rd-EAf" firstAttribute="leading" secondItem="uSk-Su-kYI" secondAttribute="leading" constant="40" id="yno-2U-e7r"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import GoogleMaps
 
 class MenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -27,6 +28,8 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Initialize the shuttle collection view.
         shuttleCollectionView.delegate = self
         shuttleCollectionView.dataSource = self
+        shuttleCollectionView.backgroundColor = UIColor.clear
+        shuttleCollectionView.backgroundView?.backgroundColor = UIColor.clear
     }
     
     // Set the number of items to the number of vehicles.
@@ -51,13 +54,13 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     // When an item is selected zoom to the shuttle.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let firebaseConfigs = FirebaseService().loadRemoteConfigs()
+        
         if let vehicle = self.vehicleFromIndex(index: indexPath.row) {
             dismiss(animated: true, completion: {
                 if let latitude = vehicle.latitude,
                     let longitude = vehicle.longitude,
-                    let zoom = firebaseConfigs[CAMERA_ZOOM_KEY].numberValue {
-                    let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
-                    self.mapViewController?.mapView.camera = camera
+                    let zoom = firebaseConfigs[CAMERA_CLOSE_ZOOM_KEY].numberValue {
+                    self.mapViewController?.mapView.camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
                 }
             })
         }
@@ -75,6 +78,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     // Change the map type based on selection.
     @IBAction func mapTypeTapped(_ sender: UISegmentedControl) {
         self.mapViewController.mapView.mapType = ConfigurationService().mapType(index: sender.selectedSegmentIndex)
+        setNeedsStatusBarAppearanceUpdate()
         UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "mapTypeIndex")
     }
     

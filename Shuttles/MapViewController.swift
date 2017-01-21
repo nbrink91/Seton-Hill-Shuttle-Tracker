@@ -24,6 +24,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         case zoomed, selected, notSelected
     }
     var myLocationButtonState = myLocationButtonStates.notSelected
+    var myLocationCanBeUnselected = false
     
     // Variables
     var markers: [Int64:GMSMarker] = [:]
@@ -34,11 +35,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     // Colors
     var markerColors: [UIColor] = [
-        UIColor.red,
-        UIColor.green,
-        UIColor.purple,
-        UIColor.darkGray,
-        UIColor.brown
+        UIColor.init(red: 183/255, green: 28/255, blue: 28/255, alpha: 0.87),
+        UIColor.init(red: 27/255, green: 94/255, blue: 32/255, alpha: 0.87),
+        UIColor.init(red: 74/255, green: 20/255, blue: 140/255, alpha: 0.87),
+        UIColor.init(red: 38/255, green: 50/255, blue: 56/255, alpha: 0.87),
+        UIColor.init(red: 230/255, green: 81/255, blue: 0, alpha: 0.87)
     ]
     var currentMarkerColorIndex: Int = 0
     
@@ -46,50 +47,55 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var myLocationButton: UIImageView!
     
-    // Change the icon back to not selected if the map is moved.
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        if myLocationButtonState != myLocationButtonStates.notSelected {
-            print("-> Not Selected")
-            myLocationButton.image = UIImage(named: "myLocationButton-notSelected")
-            myLocationButtonState = myLocationButtonStates.notSelected
-            myLocationSelected = false
-        }
-    }
-    
     // Actions
     @IBAction func myLocationButtonTapped(_ sender: Any) {
         if let coordinates = mapView.myLocation?.coordinate {
             switch myLocationButtonState {
             case myLocationButtonStates.notSelected:
                 print("Not Selected -> Selected")
+                myLocationButtonState = myLocationButtonStates.selected
                 myLocationButton.image = UIImage(named: "myLocationButton-selected")
                 let camera = GMSCameraPosition(target: coordinates, zoom: 14, bearing: 0, viewingAngle: 0)
                 mapView.animate(to: camera)
-                myLocationButtonState = myLocationButtonStates.selected
                 break
             case myLocationButtonStates.zoomed:
                 print("Zoomed -> Selected")
+                myLocationButtonState = myLocationButtonStates.selected
                 myLocationButton.image = UIImage(named: "myLocationButton-selected")
                 let camera = GMSCameraPosition(target: coordinates, zoom: 14, bearing: 0, viewingAngle: 0)
                 mapView.animate(to: camera)
-                myLocationButtonState = myLocationButtonStates.selected
                 break
             case myLocationButtonStates.selected:
                 print("Selected -> Zoomed")
+                myLocationButtonState = myLocationButtonStates.notSelected
                 myLocationButton.image = UIImage(named: "myLocationButton-zoomed")
                 let camera = GMSCameraPosition(target: coordinates, zoom: 20, bearing: myHeading, viewingAngle: 180)
                 mapView.animate(to: camera)
-                myLocationButtonState = myLocationButtonStates.notSelected
                 break
             }
         }
     }
     
-    // Key my heading direction up to date.
+    // Save heading direction so it can be used for zoom view.
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         myHeading = newHeading.trueHeading
     }
+    
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        if myLocationButtonState == .selected || myLocationButtonState == .zoomed {
+            myLocationCanBeUnselected = true
+        }
+    }
 
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        if myLocationCanBeUnselected == true {
+            print("Move to unselected!")
+            myLocationCanBeUnselected = false
+            myLocationButton.image = UIImage(named: "myLocationButton-notSelected")
+            myLocationButtonState = myLocationButtonStates.notSelected
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,6 +123,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     func initMapView() {
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
+        mapView.settings.compassButton = true
+        mapView.padding = UIEdgeInsetsMake(20, 0, 0, 0)
         
         // Set the map type if it is in the config.
         if let mapTypeIndex = UserDefaults.standard.string(forKey: "mapTypeIndex") {
@@ -151,7 +159,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     // Set the color of the Status Bar based on if it is in dark mode or not.
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if darkMode == true {
+        if darkMode == true || mapView.mapType == kGMSTypeHybrid {
             return .lightContent
         } else {
             return .default
