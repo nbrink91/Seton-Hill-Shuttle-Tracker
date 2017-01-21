@@ -8,20 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		C41C51301E29CD1600C6C2BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C512F1E29CD1600C6C2BF /* AppDelegate.swift */; };
-		C41C51321E29CD1600C6C2BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C51311E29CD1600C6C2BF /* ViewController.swift */; };
+		C41C51321E29CD1600C6C2BF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C51311E29CD1600C6C2BF /* MapViewController.swift */; };
 		C41C51351E29CD1600C6C2BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C41C51331E29CD1600C6C2BF /* Main.storyboard */; };
 		C41C51371E29CD1600C6C2BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C41C51361E29CD1600C6C2BF /* Assets.xcassets */; };
 		C41C513A1E29CD1600C6C2BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C41C51381E29CD1600C6C2BF /* LaunchScreen.storyboard */; };
+		C41C51461E29D4C300C6C2BF /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C51451E29D4C300C6C2BF /* FirebaseService.swift */; };
+		C41C514A1E29D9DF00C6C2BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C41C51491E29D9DF00C6C2BF /* GoogleService-Info.plist */; };
+		C41C514C1E2AECE800C6C2BF /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C514B1E2AECE800C6C2BF /* Vehicle.swift */; };
+		C41C514E1E2AEE8100C6C2BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C514D1E2AEE8100C6C2BF /* Constants.swift */; };
+		C41C51511E2B010400C6C2BF /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */; };
+		C44EFB7A1E317A2B0056F0BA /* Night.json in Resources */ = {isa = PBXBuildFile; fileRef = C44EFB791E317A2B0056F0BA /* Night.json */; };
+		C45CFAB41E319A22008F6EA2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */; };
+		C45CFAB61E319F23008F6EA2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB51E319F23008F6EA2 /* MenuView.swift */; };
+		C45CFAB81E31A516008F6EA2 /* HeaderUIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB71E31A516008F6EA2 /* HeaderUIStackView.swift */; };
+		C45CFABA1E31A67E008F6EA2 /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB91E31A67E008F6EA2 /* ConfigurationService.swift */; };
+		C45CFABC1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFABB1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift */; };
+		F12E2DB01D06F6033170524F /* Pods_Shuttles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C48F86DEF197AA8C28B8F5C /* Pods-Shuttles.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shuttles.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles.release.xcconfig"; sourceTree = "<group>"; };
 		C41C512C1E29CD1600C6C2BF /* Shuttles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuttles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41C512F1E29CD1600C6C2BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C41C51311E29CD1600C6C2BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C41C51311E29CD1600C6C2BF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
 		C41C51341E29CD1600C6C2BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C41C51361E29CD1600C6C2BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C41C51391E29CD1600C6C2BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C41C513B1E29CD1600C6C2BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C41C51451E29D4C300C6C2BF /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		C41C51491E29D9DF00C6C2BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C41C514B1E2AECE800C6C2BF /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		C41C514D1E2AEE8100C6C2BF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RemoteConfigDefaults.plist; path = Shuttles/RemoteConfigDefaults.plist; sourceTree = SOURCE_ROOT; };
+		C44EFB791E317A2B0056F0BA /* Night.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Night.json; sourceTree = "<group>"; };
+		C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		C45CFAB51E319F23008F6EA2 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		C45CFAB71E31A516008F6EA2 /* HeaderUIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderUIStackView.swift; sourceTree = "<group>"; };
+		C45CFAB91E31A67E008F6EA2 /* ConfigurationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
+		C45CFABB1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuttleCollectionViewCell.swift; sourceTree = "<group>"; };
+		F14E79B4BB7F836A11F29512 /* Pods-Shuttles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shuttles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles.debug.xcconfig"; sourceTree = "<group>"; };
+		F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shuttles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +55,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F12E2DB01D06F6033170524F /* Pods_Shuttles.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A38BBD676141C84C91B7B5C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F14E79B4BB7F836A11F29512 /* Pods-Shuttles.debug.xcconfig */,
+				2C48F86DEF197AA8C28B8F5C /* Pods-Shuttles.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		847ABF2A472C037F8C2C75C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C41C51231E29CD1600C6C2BF = {
 			isa = PBXGroup;
 			children = (
 				C41C512E1E29CD1600C6C2BF /* Shuttles */,
 				C41C512D1E29CD1600C6C2BF /* Products */,
+				3A38BBD676141C84C91B7B5C /* Pods */,
+				847ABF2A472C037F8C2C75C4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +100,65 @@
 		C41C512E1E29CD1600C6C2BF /* Shuttles */ = {
 			isa = PBXGroup;
 			children = (
+				C44EFB781E317A000056F0BA /* MapStyles */,
+				C41C51441E29D1DF00C6C2BF /* Services */,
+				C41C51431E29D19B00C6C2BF /* Controller */,
+				C41C51421E29D19100C6C2BF /* View */,
+				C41C51411E29D18B00C6C2BF /* Model */,
 				C41C512F1E29CD1600C6C2BF /* AppDelegate.swift */,
-				C41C51311E29CD1600C6C2BF /* ViewController.swift */,
 				C41C51331E29CD1600C6C2BF /* Main.storyboard */,
 				C41C51361E29CD1600C6C2BF /* Assets.xcassets */,
 				C41C51381E29CD1600C6C2BF /* LaunchScreen.storyboard */,
+				C41C51491E29D9DF00C6C2BF /* GoogleService-Info.plist */,
+				C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */,
 				C41C513B1E29CD1600C6C2BF /* Info.plist */,
 			);
 			path = Shuttles;
+			sourceTree = "<group>";
+		};
+		C41C51411E29D18B00C6C2BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C41C514B1E2AECE800C6C2BF /* Vehicle.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C41C51421E29D19100C6C2BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C45CFAB51E319F23008F6EA2 /* MenuView.swift */,
+				C45CFAB71E31A516008F6EA2 /* HeaderUIStackView.swift */,
+				C45CFABB1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C41C51431E29D19B00C6C2BF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C41C51311E29CD1600C6C2BF /* MapViewController.swift */,
+				C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C41C51441E29D1DF00C6C2BF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C41C51451E29D4C300C6C2BF /* FirebaseService.swift */,
+				C41C514D1E2AEE8100C6C2BF /* Constants.swift */,
+				C45CFAB91E31A67E008F6EA2 /* ConfigurationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C44EFB781E317A000056F0BA /* MapStyles */ = {
+			isa = PBXGroup;
+			children = (
+				C44EFB791E317A2B0056F0BA /* Night.json */,
+			);
+			path = MapStyles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +168,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C41C513E1E29CD1600C6C2BF /* Build configuration list for PBXNativeTarget "Shuttles" */;
 			buildPhases = (
+				0EF5D9CE6CD9373762CED730 /* [CP] Check Pods Manifest.lock */,
 				C41C51281E29CD1600C6C2BF /* Sources */,
 				C41C51291E29CD1600C6C2BF /* Frameworks */,
 				C41C512A1E29CD1600C6C2BF /* Resources */,
+				F41AC530608210D3D6BAE3CC /* [CP] Embed Pods Frameworks */,
+				C8DA14DE120CC6CAC441FB0D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,7 +196,7 @@
 				TargetAttributes = {
 					C41C512B1E29CD1600C6C2BF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 8U855GF3UC;
+						DevelopmentTeam = 9BZJSUULM5;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -125,19 +225,78 @@
 			buildActionMask = 2147483647;
 			files = (
 				C41C513A1E29CD1600C6C2BF /* LaunchScreen.storyboard in Resources */,
+				C41C51511E2B010400C6C2BF /* RemoteConfigDefaults.plist in Resources */,
+				C41C514A1E29D9DF00C6C2BF /* GoogleService-Info.plist in Resources */,
 				C41C51371E29CD1600C6C2BF /* Assets.xcassets in Resources */,
+				C44EFB7A1E317A2B0056F0BA /* Night.json in Resources */,
 				C41C51351E29CD1600C6C2BF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0EF5D9CE6CD9373762CED730 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C8DA14DE120CC6CAC441FB0D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F41AC530608210D3D6BAE3CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C41C51281E29CD1600C6C2BF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C41C51321E29CD1600C6C2BF /* ViewController.swift in Sources */,
+				C45CFAB61E319F23008F6EA2 /* MenuView.swift in Sources */,
+				C41C514E1E2AEE8100C6C2BF /* Constants.swift in Sources */,
+				C45CFAB81E31A516008F6EA2 /* HeaderUIStackView.swift in Sources */,
+				C45CFAB41E319A22008F6EA2 /* MenuViewController.swift in Sources */,
+				C45CFABC1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift in Sources */,
+				C41C514C1E2AECE800C6C2BF /* Vehicle.swift in Sources */,
+				C41C51321E29CD1600C6C2BF /* MapViewController.swift in Sources */,
+				C41C51461E29D4C300C6C2BF /* FirebaseService.swift in Sources */,
+				C45CFABA1E31A67E008F6EA2 /* ConfigurationService.swift in Sources */,
 				C41C51301E29CD1600C6C2BF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,7 +363,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -248,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -259,27 +418,35 @@
 		};
 		C41C513F1E29CD1600C6C2BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F14E79B4BB7F836A11F29512 /* Pods-Shuttles.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8U855GF3UC;
+				DEVELOPMENT_TEAM = 9BZJSUULM5;
 				INFOPLIST_FILE = Shuttles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.setonhill.Shuttles;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.setonhill.shuttletracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		C41C51401E29CD1600C6C2BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C48F86DEF197AA8C28B8F5C /* Pods-Shuttles.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8U855GF3UC;
+				DEVELOPMENT_TEAM = 9BZJSUULM5;
 				INFOPLIST_FILE = Shuttles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.setonhill.Shuttles;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.setonhill.shuttletracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -302,6 +469,7 @@
 				C41C51401E29CD1600C6C2BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
