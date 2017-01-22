@@ -26,17 +26,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4kN-27-vyC" userLabel="Buttons">
-                                <rect key="frame" x="343" y="551" width="16" height="16"/>
+                                <rect key="frame" x="343" y="515" width="16" height="52"/>
                                 <subviews>
                                     <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myLocationButton-notSelected" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-y3-Sjm" userLabel="My Location Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="16" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="grs-N6-uGb" appends="YES" id="glz-Ca-bDf"/>
                                         </connections>
                                     </imageView>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ePS-dF-KiU" userLabel="Menu Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                        <rect key="frame" x="0.0" y="36" width="16" height="16"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="xOE-PJ-Xkp" appends="YES" id="MZg-oj-U3H"/>
@@ -95,7 +95,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSk-Su-kYI" userLabel="Menu View" customClass="MenuView" customModule="Shuttles" customModuleProvider="target">
-                                <rect key="frame" x="5" y="267" width="365" height="400"/>
+                                <rect key="frame" x="5" y="397" width="365" height="270"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkN-r5-EHg" userLabel="Title Stack View" customClass="HeaderUIStackView" customModule="Shuttles" customModuleProvider="target">
                                         <rect key="frame" x="20" y="20" width="325" height="30"/>
@@ -194,7 +194,7 @@
                                     <constraint firstAttribute="trailing" secondItem="3yH-Rd-EAf" secondAttribute="trailing" constant="40" id="2S1-9v-W5e"/>
                                     <constraint firstItem="NkN-r5-EHg" firstAttribute="top" secondItem="uSk-Su-kYI" secondAttribute="top" constant="20" id="4QS-GY-AAC"/>
                                     <constraint firstItem="7eQ-0d-gxi" firstAttribute="leading" secondItem="uSk-Su-kYI" secondAttribute="leading" constant="40" id="6fK-Mb-ckO"/>
-                                    <constraint firstAttribute="height" constant="400" id="TTP-vR-p3u"/>
+                                    <constraint firstAttribute="height" constant="270" id="TTP-vR-p3u"/>
                                     <constraint firstItem="3yH-Rd-EAf" firstAttribute="top" secondItem="NkN-r5-EHg" secondAttribute="bottom" constant="20" id="eMu-pX-rNc"/>
                                     <constraint firstItem="7eQ-0d-gxi" firstAttribute="top" secondItem="3yH-Rd-EAf" secondAttribute="bottom" constant="20" id="qyD-C6-J9D"/>
                                     <constraint firstAttribute="trailing" secondItem="7eQ-0d-gxi" secondAttribute="trailing" constant="40" id="r1C-Ht-Qu2"/>

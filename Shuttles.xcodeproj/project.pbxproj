@@ -17,6 +17,7 @@
 		C41C514C1E2AECE800C6C2BF /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C514B1E2AECE800C6C2BF /* Vehicle.swift */; };
 		C41C514E1E2AEE8100C6C2BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C514D1E2AEE8100C6C2BF /* Constants.swift */; };
 		C41C51511E2B010400C6C2BF /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */; };
+		C432CBDC1E3420460031A95B /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C432CBDB1E3420460031A95B /* Schedule.swift */; };
 		C44EFB7A1E317A2B0056F0BA /* Night.json in Resources */ = {isa = PBXBuildFile; fileRef = C44EFB791E317A2B0056F0BA /* Night.json */; };
 		C45CFAB41E319A22008F6EA2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */; };
 		C45CFAB61E319F23008F6EA2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB51E319F23008F6EA2 /* MenuView.swift */; };
@@ -40,6 +41,7 @@
 		C41C514B1E2AECE800C6C2BF /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		C41C514D1E2AEE8100C6C2BF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RemoteConfigDefaults.plist; path = Shuttles/RemoteConfigDefaults.plist; sourceTree = SOURCE_ROOT; };
+		C432CBDB1E3420460031A95B /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		C44EFB791E317A2B0056F0BA /* Night.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Night.json; sourceTree = "<group>"; };
 		C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		C45CFAB51E319F23008F6EA2 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				C41C514B1E2AECE800C6C2BF /* Vehicle.swift */,
+				C432CBDB1E3420460031A95B /* Schedule.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			files = (
 				C45CFAB61E319F23008F6EA2 /* MenuView.swift in Sources */,
 				C41C514E1E2AEE8100C6C2BF /* Constants.swift in Sources */,
+				C432CBDC1E3420460031A95B /* Schedule.swift in Sources */,
 				C45CFAB81E31A516008F6EA2 /* HeaderUIStackView.swift in Sources */,
 				C45CFAB41E319A22008F6EA2 /* MenuViewController.swift in Sources */,
 				C45CFABC1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift in Sources */,

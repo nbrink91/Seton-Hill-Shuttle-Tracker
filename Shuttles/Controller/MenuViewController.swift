@@ -14,11 +14,16 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var mapType: UISegmentedControl!
     @IBOutlet weak var shuttleCollectionView: UICollectionView!
     
+    // Vars
+    var shuttleSchedules: [Int64:Schedule] = [:]
+    
     // Seque
     weak var mapViewController: MapViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadShuttleSchedules()
         
         // Initialize Map Type.
         if let mapTypeIndex = UserDefaults.standard.string(forKey: "mapTypeIndex") {
@@ -30,6 +35,22 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         shuttleCollectionView.dataSource = self
         shuttleCollectionView.backgroundColor = UIColor.clear
         shuttleCollectionView.backgroundView?.backgroundColor = UIColor.clear
+    }
+    
+    // Load the Shuttle Schedules from Firebase and save it on the class as a dictionary to reuse.
+    func loadShuttleSchedules() -> Void {
+        FIRDatabase.database().reference().child("schedules").observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
+            if let shuttleSchedulesDict = snapshot.value as? Dictionary<String, AnyObject> {
+                for scheduleObject in shuttleSchedulesDict {
+                    if let scheduleDict = scheduleObject.value as? Dictionary<String, String> {
+                        let vehicleId = Int64(scheduleObject.key)
+                        if vehicleId != nil {
+                            self.shuttleSchedules[vehicleId!] = Schedule(schedule: scheduleDict)
+                        }
+                    }
+                }
+            }
+        })
     }
     
     // Set the number of items to the number of vehicles.
@@ -53,16 +74,53 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // When an item is selected zoom to the shuttle.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let firebaseConfigs = FirebaseService().loadRemoteConfigs()
         
+        // Get the vehicle for the pressed button.
         if let vehicle = self.vehicleFromIndex(index: indexPath.row) {
-            dismiss(animated: true, completion: {
-                if let latitude = vehicle.latitude,
-                    let longitude = vehicle.longitude,
-                    let zoom = firebaseConfigs[CAMERA_CLOSE_ZOOM_KEY].numberValue {
-                    self.mapViewController?.mapView.camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
-                }
-            })
+            
+            // Build an alert on tap.
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            
+            // If go to shuttle is pressed, close the modal and go to the coordinates.
+            alert.addAction(UIAlertAction(title: "Go to Shuttle", style: UIAlertActionStyle.default, handler: { (data) in
+                let firebaseConfigs = FirebaseService().loadRemoteConfigs()
+                
+                self.dismiss(animated: true, completion: {
+                    if let latitude = vehicle.latitude,
+                        let longitude = vehicle.longitude,
+                        let zoom = firebaseConfigs[CAMERA_CLOSE_ZOOM_KEY].numberValue {
+                        self.mapViewController?.mapView.camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
+                    }
+                })
+            }))
+            
+            let schedule = shuttleSchedules[vehicle.deviceId]
+            
+            if (schedule?.allWeek != nil) {
+                alert.addAction(UIAlertAction(title: "View Schedule", style: UIAlertActionStyle.default, handler: { (data) in
+                    print("View Schedule Pressed")
+                }))
+            }
+
+            if (schedule?.weekday != nil) {
+                alert.addAction(UIAlertAction(title: "View Weekday Schedule", style: UIAlertActionStyle.default, handler: { (data) in
+                    print("Weekday Schedule Pressed")
+                }))
+            }
+            
+            if (schedule?.weekend != nil) {
+                alert.addAction(UIAlertAction(title: "View Weekend Schedule", style: UIAlertActionStyle.default, handler: { (data) in
+                    print("Weekend Schedule Pressed")
+                }))
+            }
+            
+            // Close the alert.
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: { (data) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            
+            // Present the alert.
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -83,7 +141,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     // Dismiss the menu and return to map.
-    func dismissMenu(){
+    func dismissMenu() -> Void {
         dismiss(animated: true) { 
             print("Dismissed")
         }
