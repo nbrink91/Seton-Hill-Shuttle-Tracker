@@ -218,6 +218,7 @@
                     <connections>
                         <outlet property="mapType" destination="CwA-w9-pKi" id="8i0-6B-YQp"/>
                         <outlet property="shuttleCollectionView" destination="3yH-Rd-EAf" id="5y4-z9-iLb"/>
+                        <segue destination="q9x-pz-MG2" kind="show" identifier="goToSchedule" id="mQF-ss-QWj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qws-yp-veE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -228,6 +229,53 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="906.39999999999998" y="138.98050974512745"/>
+        </scene>
+        <!--Schedule View Controller-->
+        <scene sceneID="9b1-or-xQE">
+            <objects>
+                <viewController id="q9x-pz-MG2" customClass="ScheduleViewController" customModule="Shuttles" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r0v-Wd-hGt"/>
+                        <viewControllerLayoutGuide type="bottom" id="vCJ-QY-8bZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Etq-XX-Ilh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ggg-Kk-A4s" userLabel="Schedule Web View">
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iw-OG-eTX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MCJ-RI-0H9"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Schedule" id="i8m-R9-JOI"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ggg-Kk-A4s" secondAttribute="trailing" id="23D-Pa-NLY"/>
+                            <constraint firstItem="8iw-OG-eTX" firstAttribute="leading" secondItem="Etq-XX-Ilh" secondAttribute="leading" id="3Re-eW-AT4"/>
+                            <constraint firstItem="Ggg-Kk-A4s" firstAttribute="top" secondItem="8iw-OG-eTX" secondAttribute="bottom" id="4Gz-D4-dIT"/>
+                            <constraint firstItem="8iw-OG-eTX" firstAttribute="top" secondItem="Etq-XX-Ilh" secondAttribute="top" id="LEc-cA-lqh"/>
+                            <constraint firstAttribute="trailing" secondItem="8iw-OG-eTX" secondAttribute="trailing" id="bA4-sz-2Y8"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Ggg-Kk-A4s" secondAttribute="bottom" id="fbM-M2-NGm"/>
+                            <constraint firstItem="Ggg-Kk-A4s" firstAttribute="leading" secondItem="Etq-XX-Ilh" secondAttribute="leading" id="hY8-9U-LVl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="8iw-OG-eTX" id="bTd-yg-479"/>
+                        <outlet property="navItem" destination="i8m-R9-JOI" id="ec7-KN-EaV"/>
+                        <outlet property="scheduleView" destination="Ggg-Kk-A4s" id="1dX-Yg-DKL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Krh-nb-m7Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1672.8" y="139.880059970015"/>
         </scene>
     </scenes>
     <resources>

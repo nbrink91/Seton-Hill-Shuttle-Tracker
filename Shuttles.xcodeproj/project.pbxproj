@@ -24,6 +24,7 @@
 		C45CFAB81E31A516008F6EA2 /* HeaderUIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB71E31A516008F6EA2 /* HeaderUIStackView.swift */; };
 		C45CFABA1E31A67E008F6EA2 /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB91E31A67E008F6EA2 /* ConfigurationService.swift */; };
 		C45CFABC1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFABB1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift */; };
+		C462F8991E35359E00465A32 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F8981E35359E00465A32 /* ScheduleViewController.swift */; };
 		F12E2DB01D06F6033170524F /* Pods_Shuttles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		C45CFAB71E31A516008F6EA2 /* HeaderUIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderUIStackView.swift; sourceTree = "<group>"; };
 		C45CFAB91E31A67E008F6EA2 /* ConfigurationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
 		C45CFABB1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuttleCollectionViewCell.swift; sourceTree = "<group>"; };
+		C462F8981E35359E00465A32 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleViewController.swift; path = ../View/ScheduleViewController.swift; sourceTree = "<group>"; };
 		F14E79B4BB7F836A11F29512 /* Pods-Shuttles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shuttles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles.debug.xcconfig"; sourceTree = "<group>"; };
 		F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shuttles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -142,6 +144,7 @@
 			children = (
 				C41C51311E29CD1600C6C2BF /* MapViewController.swift */,
 				C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */,
+				C462F8981E35359E00465A32 /* ScheduleViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				C45CFAB61E319F23008F6EA2 /* MenuView.swift in Sources */,
 				C41C514E1E2AEE8100C6C2BF /* Constants.swift in Sources */,
 				C432CBDC1E3420460031A95B /* Schedule.swift in Sources */,
+				C462F8991E35359E00465A32 /* ScheduleViewController.swift in Sources */,
 				C45CFAB81E31A516008F6EA2 /* HeaderUIStackView.swift in Sources */,
 				C45CFAB41E319A22008F6EA2 /* MenuViewController.swift in Sources */,
 				C45CFABC1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift in Sources */,

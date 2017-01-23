@@ -16,6 +16,8 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // Vars
     var shuttleSchedules: [Int64:Schedule] = [:]
+    var scheduleUrl: String?
+    var scheduleVehicle: Vehicle?
     
     // Seque
     weak var mapViewController: MapViewController!
@@ -98,19 +100,19 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             if (schedule?.allWeek != nil) {
                 alert.addAction(UIAlertAction(title: "View Schedule", style: UIAlertActionStyle.default, handler: { (data) in
-                    print("View Schedule Pressed")
+                    self.segueToSchedule(url: (schedule?.allWeek!)!, vehicle: vehicle)
                 }))
             }
 
             if (schedule?.weekday != nil) {
                 alert.addAction(UIAlertAction(title: "View Weekday Schedule", style: UIAlertActionStyle.default, handler: { (data) in
-                    print("Weekday Schedule Pressed")
+                    self.segueToSchedule(url: (schedule?.weekday!)!, vehicle: vehicle)
                 }))
             }
             
             if (schedule?.weekend != nil) {
                 alert.addAction(UIAlertAction(title: "View Weekend Schedule", style: UIAlertActionStyle.default, handler: { (data) in
-                    print("Weekend Schedule Pressed")
+                    self.segueToSchedule(url: (schedule?.weekend!)!, vehicle: vehicle)
                 }))
             }
             
@@ -122,6 +124,12 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
             // Present the alert.
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func segueToSchedule(url: String, vehicle: Vehicle) {
+        self.scheduleUrl = url
+        self.scheduleVehicle = vehicle
+        self.performSegue(withIdentifier: "goToSchedule", sender: self)
     }
     
     @IBAction func closeTapped(_ sender: Any) {
@@ -155,5 +163,14 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         
         return nil
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToSchedule" {
+            if let target = segue.destination as? ScheduleViewController {
+                target.url = self.scheduleUrl
+                target.vehicle = self.scheduleVehicle
+            }
+        }
     }
 }
