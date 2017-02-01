@@ -46,6 +46,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     // Outlets
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var myLocationButton: UIImageView!
+    @IBOutlet weak var menuButton: UIImageView!
     
     // Actions
     @IBAction func myLocationButtonTapped(_ sender: Any) {
@@ -115,7 +116,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
             locationManager.startUpdatingHeading()
-            myLocationButton.isHidden = false
+            //myLocationButton.isHidden = false
         }
     }
     
@@ -148,7 +149,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
                         mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
                         setNeedsStatusBarAppearanceUpdate()
                     } else {
-                        print("Unable to find style.json")
+                        print("Unable to find the night style.")
                     }
                 } catch {
                     print("One or more of the map styles failed to load. \(error)")
@@ -170,6 +171,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     func watchForVehicleCreation() {
         FIR_REF_VEHICLES.observe(FIRDataEventType.childAdded, with: { (snapshot) in
             if let vehicleDictionary = snapshot.value as? Dictionary<String, AnyObject> {
+                UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                    self.menuButton.isHidden = false
+                }, completion: nil)
                 let vehicle = Vehicle(vehicle: vehicleDictionary)
                 vehicle.color = self.getMarkerIconColor(vehicle: vehicle)
                 self.updateMarker(vehicle: vehicle)
@@ -213,10 +217,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             if let heading = vehicle.heading {
                 // Show direction arrow and rotate marker.
                 marker.rotation = CLLocationDegrees(heading)
-                marker.iconView = getMarkerIcon(backgroundColor: UIColor.white, iconColor: vehicle.color!, directionEnabled: true)
+                //marker.iconView = getMarkerIcon(backgroundColor: UIColor.white, iconColor: vehicle.color!, directionEnabled: true)
+                marker.iconView = ShuttleHeadingUIView(color: vehicle.color!)
             } else {
                 // Don't show direction if there is no vehicle heading.
-                marker.iconView = getMarkerIcon(backgroundColor: UIColor.white, iconColor: vehicle.color!, directionEnabled: false)
+                marker.iconView = ShuttleUIImageView(color: vehicle.color!)
             }
             
             markers[vehicle.deviceId] = marker
@@ -253,37 +258,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             let color = markerColors[currentMarkerColorIndex]
             currentMarkerColorIndex += 1
             return color
-        }
-    }
-    
-    // Get a marker of a given color.
-    func getMarkerIcon(backgroundColor: UIColor, iconColor: UIColor, directionEnabled: Bool) -> UIImageView {
-        let markerBackground = UIImage(named: "markerBackground")?.withRenderingMode(.alwaysTemplate)
-        let markerBackgroundView = UIImageView(image: markerBackground)
-        markerBackgroundView.tintColor = backgroundColor
-        markerBackgroundView.contentMode = UIViewContentMode.scaleAspectFit
-        
-        let markerInside = UIImage(named: "markerInside")?.withRenderingMode(.alwaysTemplate)
-        let markerInsideView = UIImageView(image: markerInside)
-        markerInsideView.tintColor = iconColor
-        markerInsideView.center = CGPoint(x: markerBackgroundView.frame.size.width/2, y: markerBackgroundView.frame.size.height/2)
-        
-        if directionEnabled == true {
-            let markerPointer = UIImage(named: "markerPointer")?.withRenderingMode(.alwaysTemplate)
-            let markerPointerView = UIImageView(image: markerPointer)
-            markerPointerView.tintColor = iconColor
-            markerPointerView.contentMode = UIViewContentMode.scaleAspectFit
-            markerBackgroundView.center = CGPoint(x: markerPointerView.frame.size.width/2, y: markerPointerView.frame.size.height)
-            
-            markerPointerView.addSubview(markerBackgroundView)
-            markerBackgroundView.addSubview(markerInsideView)
-            
-            markerPointerView.bounds = CGRect(x: 0, y: -1 * markerBackgroundView.frame.size.height/2, width: markerBackgroundView.frame.width, height: markerBackgroundView.frame.height + markerPointerView.frame.height)
-            
-            return markerPointerView
-        } else {
-            markerBackgroundView.addSubview(markerInsideView)
-            return markerBackgroundView
         }
     }
     

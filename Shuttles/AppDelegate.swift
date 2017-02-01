@@ -23,8 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let key = remoteConfigs.configValue(forKey: "google_maps_api_key").stringValue, key != "" {
             GMSServices.provideAPIKey(key)
-        } else {
-            GMSServices.provideAPIKey("AIzaSyC2KyeSBz5dl5Pc-EQ6sZ8dPY91mIMo3nc")
         }
         
         return true

@@ -150,9 +150,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // Dismiss the menu and return to map.
     func dismissMenu() -> Void {
-        dismiss(animated: true) { 
-            print("Dismissed")
-        }
+        dismiss(animated: true) {}
     }
     
     // Get a vehicle if it exists at a given index.

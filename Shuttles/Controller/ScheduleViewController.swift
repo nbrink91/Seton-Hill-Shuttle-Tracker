@@ -29,7 +29,11 @@ class ScheduleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navItem.title = "\(vehicle.deviceName) Schedule"
+        
+        if let title = vehicle.deviceName {
+            self.navItem.title = "\(title) Schedule"
+        }
+        
         self.navItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(back))
     }
     

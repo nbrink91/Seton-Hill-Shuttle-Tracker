@@ -35,7 +35,7 @@
                                             <outletCollection property="gestureRecognizers" destination="grs-N6-uGb" appends="YES" id="glz-Ca-bDf"/>
                                         </connections>
                                     </imageView>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ePS-dF-KiU" userLabel="Menu Button">
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ePS-dF-KiU" userLabel="Menu Button">
                                         <rect key="frame" x="0.0" y="36" width="16" height="16"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -57,6 +57,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="e2a-Hg-hLL" id="WSr-G2-UD8"/>
+                        <outlet property="menuButton" destination="ePS-dF-KiU" id="pCU-eI-ysw"/>
                         <outlet property="myLocationButton" destination="5nA-y3-Sjm" id="8wI-6C-IKR"/>
                     </connections>
                 </viewController>
@@ -95,19 +96,20 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSk-Su-kYI" userLabel="Menu View" customClass="MenuView" customModule="Shuttles" customModuleProvider="target">
-                                <rect key="frame" x="5" y="397" width="365" height="270"/>
+                                <rect key="frame" x="5" y="417" width="365" height="250"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkN-r5-EHg" userLabel="Title Stack View" customClass="HeaderUIStackView" customModule="Shuttles" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="20" width="325" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkN-r5-EHg" userLabel="Title Stack View">
+                                        <rect key="frame" x="20" y="20" width="325" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seton Hill Shuttles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rp7-kD-p7B">
-                                                <rect key="frame" x="0.0" y="0.0" width="164.5" height="30"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="164" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bD-Oq-X61">
-                                                <rect key="frame" x="164.5" y="0.0" width="160.5" height="30"/>
+                                                <rect key="frame" x="164" y="0.0" width="161" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                 <state key="normal" title="Close">
                                                     <color key="titleColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -118,31 +120,34 @@
                                         </subviews>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3yH-Rd-EAf">
-                                        <rect key="frame" x="40" y="70" width="285" height="120"/>
+                                        <rect key="frame" x="40" y="74" width="285" height="100"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="120" id="NRm-fr-8wj"/>
+                                            <constraint firstAttribute="height" constant="100" id="NRm-fr-8wj"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bDD-TF-g62">
-                                            <size key="itemSize" width="100" height="118"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bDD-TF-g62">
+                                            <size key="itemSize" width="100" height="100"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shuttleCell" id="L5D-hw-liL" userLabel="Shuttle Collection View Cell" customClass="ShuttleCollectionViewCell" customModule="Shuttles" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="118"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="118"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S51-Sw-uhq" userLabel="Image">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="98"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S51-Sw-uhq" userLabel="Image">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qDr-yS-bKc">
-                                                            <rect key="frame" x="0.0" y="98" width="100" height="20"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shuttle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qDr-yS-bKc">
+                                                            <rect key="frame" x="0.0" y="80" width="100" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="pQu-Nk-oKr"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -150,14 +155,13 @@
                                                 </view>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="qDr-yS-bKc" secondAttribute="trailing" id="05Y-eQ-JJ7"/>
-                                                    <constraint firstItem="qDr-yS-bKc" firstAttribute="leading" secondItem="L5D-hw-liL" secondAttribute="leading" id="9lj-Qb-wdh"/>
-                                                    <constraint firstItem="qDr-yS-bKc" firstAttribute="top" secondItem="S51-Sw-uhq" secondAttribute="bottom" id="Ncn-ME-Jd6"/>
-                                                    <constraint firstItem="S51-Sw-uhq" firstAttribute="leading" secondItem="L5D-hw-liL" secondAttribute="leading" id="OlZ-4D-hLo"/>
-                                                    <constraint firstAttribute="bottom" secondItem="S51-Sw-uhq" secondAttribute="bottom" constant="20" id="clY-SK-dpN"/>
-                                                    <constraint firstAttribute="trailing" secondItem="S51-Sw-uhq" secondAttribute="trailing" id="cnV-bF-UeF"/>
-                                                    <constraint firstItem="S51-Sw-uhq" firstAttribute="top" secondItem="L5D-hw-liL" secondAttribute="top" id="vOB-We-VUg"/>
-                                                    <constraint firstAttribute="bottom" secondItem="qDr-yS-bKc" secondAttribute="bottom" id="y2d-CK-nUG"/>
+                                                    <constraint firstItem="qDr-yS-bKc" firstAttribute="leading" secondItem="L5D-hw-liL" secondAttribute="leading" id="B5N-ib-ha1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qDr-yS-bKc" secondAttribute="trailing" id="JqI-th-yDL"/>
+                                                    <constraint firstItem="S51-Sw-uhq" firstAttribute="top" secondItem="L5D-hw-liL" secondAttribute="top" id="L2U-tg-ush"/>
+                                                    <constraint firstAttribute="bottom" secondItem="qDr-yS-bKc" secondAttribute="bottom" id="ZAw-oq-2ih"/>
+                                                    <constraint firstAttribute="trailing" secondItem="S51-Sw-uhq" secondAttribute="trailing" id="do5-qa-Vch"/>
+                                                    <constraint firstItem="qDr-yS-bKc" firstAttribute="top" secondItem="S51-Sw-uhq" secondAttribute="bottom" id="pGo-AO-UeJ"/>
+                                                    <constraint firstItem="S51-Sw-uhq" firstAttribute="leading" secondItem="L5D-hw-liL" secondAttribute="leading" id="pex-Ko-VDM"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="shuttleImage" destination="S51-Sw-uhq" id="iNA-EK-Vtc"/>
@@ -167,7 +171,7 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7eQ-0d-gxi" userLabel="Map Type Stack View">
-                                        <rect key="frame" x="40" y="210" width="285" height="28"/>
+                                        <rect key="frame" x="40" y="194" width="285" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDn-4y-2u8">
                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="28"/>
@@ -194,7 +198,7 @@
                                     <constraint firstAttribute="trailing" secondItem="3yH-Rd-EAf" secondAttribute="trailing" constant="40" id="2S1-9v-W5e"/>
                                     <constraint firstItem="NkN-r5-EHg" firstAttribute="top" secondItem="uSk-Su-kYI" secondAttribute="top" constant="20" id="4QS-GY-AAC"/>
                                     <constraint firstItem="7eQ-0d-gxi" firstAttribute="leading" secondItem="uSk-Su-kYI" secondAttribute="leading" constant="40" id="6fK-Mb-ckO"/>
-                                    <constraint firstAttribute="height" constant="270" id="TTP-vR-p3u"/>
+                                    <constraint firstAttribute="height" constant="250" id="TTP-vR-p3u"/>
                                     <constraint firstItem="3yH-Rd-EAf" firstAttribute="top" secondItem="NkN-r5-EHg" secondAttribute="bottom" constant="20" id="eMu-pX-rNc"/>
                                     <constraint firstItem="7eQ-0d-gxi" firstAttribute="top" secondItem="3yH-Rd-EAf" secondAttribute="bottom" constant="20" id="qyD-C6-J9D"/>
                                     <constraint firstAttribute="trailing" secondItem="7eQ-0d-gxi" secondAttribute="trailing" constant="40" id="r1C-Ht-Qu2"/>
