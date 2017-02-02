@@ -21,7 +21,7 @@ class ShuttleHeadingUIView: UIView {
         
         self.frame = CGRect(x: 0, y: 0, width: shuttle.frame.width, height: shuttle.frame.height + shuttlePointer.frame.height/2)
         shuttle.center = CGPoint(x: self.frame.width/2, y: self.frame.height - shuttle.frame.height/2)
-        
+
         self.addSubview(shuttlePointer)
         self.addSubview(shuttle)
     }

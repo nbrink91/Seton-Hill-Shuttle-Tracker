@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Initialize Firebase.
         FIRApp.configure()
-        
         let remoteConfigs = FirebaseService().loadRemoteConfigs()
         
         if let key = remoteConfigs.configValue(forKey: "google_maps_api_key").stringValue, key != "" {

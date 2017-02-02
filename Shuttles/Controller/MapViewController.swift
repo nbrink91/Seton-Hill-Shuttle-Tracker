@@ -31,7 +31,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     var vehicles: [Int64:Vehicle] = [:]
     var FIR_REF: FIRDatabaseReference!
     var FIR_REF_VEHICLES: FIRDatabaseReference!
-    var darkMode = false // Set to dark mode if true.
+    var darkMode = false
     
     // Colors
     var markerColors: [UIColor] = [
@@ -116,7 +116,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
             locationManager.startUpdatingHeading()
-            //myLocationButton.isHidden = false
         }
     }
     
@@ -152,7 +151,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
                         print("Unable to find the night style.")
                     }
                 } catch {
-                    print("One or more of the map styles failed to load. \(error)")
+                    print("Unable to load the night style. \(error)")
                 }
             }
         }
@@ -160,7 +159,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     // Set the color of the Status Bar based on if it is in dark mode or not.
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if darkMode == true{
+        if darkMode == true {
             return .lightContent
         } else {
             return .default
@@ -208,20 +207,26 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             let longitude = vehicle.longitude {
             
             let marker = getMarker(vehicle: vehicle)
+            marker.tracksInfoWindowChanges = true
             marker.position = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
             marker.map = mapView
             marker.isFlat = true
-            //marker.userData = vehicle
             marker.title = vehicle.deviceName
             
             if let heading = vehicle.heading {
                 // Show direction arrow and rotate marker.
                 marker.rotation = CLLocationDegrees(heading)
-                //marker.iconView = getMarkerIcon(backgroundColor: UIColor.white, iconColor: vehicle.color!, directionEnabled: true)
-                marker.iconView = ShuttleHeadingUIView(color: vehicle.color!)
+                let shuttleView = ShuttleHeadingUIView(color: vehicle.color!)
+                marker.iconView = shuttleView
+                let point = CGPoint(x: 0.5, y: 0.67)
+                marker.groundAnchor = point
+                marker.infoWindowAnchor = point
             } else {
                 // Don't show direction if there is no vehicle heading.
                 marker.iconView = ShuttleUIImageView(color: vehicle.color!)
+                let point = CGPoint(x: 0.5, y: 0.5)
+                marker.groundAnchor = point
+                marker.infoWindowAnchor = point
             }
             
             markers[vehicle.deviceId] = marker

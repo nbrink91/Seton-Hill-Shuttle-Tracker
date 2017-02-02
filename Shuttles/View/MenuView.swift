@@ -16,13 +16,13 @@ class MenuView: UIView {
         let rectShape = CAShapeLayer()
         rectShape.bounds = self.frame
         rectShape.position = self.center
-        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
         
         layer.masksToBounds = true
         layer.shadowRadius = 5
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 50
         layer.mask = rectShape
-        self.contentMode = .redraw
+        contentMode = .redraw
     }
 }
