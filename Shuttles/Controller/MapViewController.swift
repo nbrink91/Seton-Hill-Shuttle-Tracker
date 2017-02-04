@@ -20,18 +20,14 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     let locationManager = CLLocationManager()
     var myHeading: Double = 0
     var myLocationSelected = false
-    enum myLocationButtonStates {
-        case zoomed, selected, notSelected
-    }
-    var myLocationButtonState = myLocationButtonStates.notSelected
-    var myLocationCanBeUnselected = false
+    var currentlyAnimatingToMyLocation = false
     
     // Variables
     var markers: [Int64:GMSMarker] = [:]
     var vehicles: [Int64:Vehicle] = [:]
     var FIR_REF: FIRDatabaseReference!
     var FIR_REF_VEHICLES: FIRDatabaseReference!
-    var darkMode = false
+    var statusBarStyle: UIStatusBarStyle  = .default
     
     // Colors
     var markerColors: [UIColor] = [
@@ -48,55 +44,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     @IBOutlet weak var myLocationButton: UIImageView!
     @IBOutlet weak var menuButton: UIImageView!
     
-    // Actions
-    @IBAction func myLocationButtonTapped(_ sender: Any) {
-        if let coordinates = mapView.myLocation?.coordinate {
-            switch myLocationButtonState {
-            case myLocationButtonStates.notSelected:
-                print("Not Selected -> Selected")
-                myLocationButtonState = myLocationButtonStates.selected
-                myLocationButton.image = UIImage(named: "myLocationButton-selected")
-                let camera = GMSCameraPosition(target: coordinates, zoom: 14, bearing: 0, viewingAngle: 0)
-                mapView.animate(to: camera)
-                break
-            case myLocationButtonStates.zoomed:
-                print("Zoomed -> Selected")
-                myLocationButtonState = myLocationButtonStates.selected
-                myLocationButton.image = UIImage(named: "myLocationButton-selected")
-                let camera = GMSCameraPosition(target: coordinates, zoom: 14, bearing: 0, viewingAngle: 0)
-                mapView.animate(to: camera)
-                break
-            case myLocationButtonStates.selected:
-                print("Selected -> Zoomed")
-                myLocationButtonState = myLocationButtonStates.notSelected
-                myLocationButton.image = UIImage(named: "myLocationButton-zoomed")
-                let camera = GMSCameraPosition(target: coordinates, zoom: 20, bearing: myHeading, viewingAngle: 180)
-                mapView.animate(to: camera)
-                break
-            }
-        }
-    }
-    
-    // Save heading direction so it can be used for zoom view.
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        myHeading = newHeading.trueHeading
-    }
-    
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        if myLocationButtonState == .selected || myLocationButtonState == .zoomed {
-            myLocationCanBeUnselected = true
-        }
-    }
-
-    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-        if myLocationCanBeUnselected == true {
-            print("Move to unselected!")
-            myLocationCanBeUnselected = false
-            myLocationButton.image = UIImage(named: "myLocationButton-notSelected")
-            myLocationButtonState = myLocationButtonStates.notSelected
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -108,14 +55,15 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         watchForVehicleChange()
         watchForVehicleDelete()
         
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingHeading();
         
-        if CLLocationManager.locationServicesEnabled() {
+        // Ask for location and enable tracking if that is true.
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() && CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
             locationManager.startUpdatingHeading()
+            self.myLocationButton.isHidden = false
         }
     }
     
@@ -129,6 +77,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         // Set the map type if it is in the config.
         if let mapTypeIndex = UserDefaults.standard.string(forKey: "mapTypeIndex") {
             mapView.mapType = ConfigurationService().mapType(index: Int(mapTypeIndex)!)
+            
+            if mapView.mapType == kGMSTypeHybrid {
+                self.statusBarStyle = .lightContent
+                setNeedsStatusBarAppearanceUpdate()
+            }
         }
         
         // Initialize things that use location.
@@ -139,13 +92,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             
             // Check to see if it is night time, if so, use night mode.
             let solar = Solar(latitude: latitude, longitude: longitude)
-            if let isNighttime = solar?.isNighttime {
-                darkMode = isNighttime
-            }
-            if darkMode == true {
+            if let isNighttime = solar?.isNighttime, isNighttime == true {
                 do {
                     if let styleURL = Bundle.main.url(forResource: "Night", withExtension: "json") {
                         mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                        self.statusBarStyle = .lightContent
                         setNeedsStatusBarAppearanceUpdate()
                     } else {
                         print("Unable to find the night style.")
@@ -157,13 +108,67 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         }
     }
     
+    // My Location Button Handler
+    @IBAction func myLocationButtonTapped(_ sender: Any) {
+        if myLocationSelected == false || currentlyAnimatingToMyLocation == false,
+            let coordinates = mapView.myLocation?.coordinate {
+            currentlyAnimatingToMyLocation = true
+            myLocationButton.image = UIImage(named: "myLocationButton-selected")
+            mapView.animate(toLocation: coordinates)
+        } else {
+            myLocationSelected = false
+            myLocationButton.image = UIImage(named: "myLocationButton-notSelected")
+            currentlyAnimatingToMyLocation = false
+        }
+    }
+    
+    // Handle event that occur when the map stops at a position.
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        // Handle pressing myLocationButton
+        if currentlyAnimatingToMyLocation == true {
+            currentlyAnimatingToMyLocation = false
+            myLocationSelected = true
+        }
+    }
+    
+    // Handle event that occur when the position changes.
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        if myLocationSelected == true {
+            myLocationSelected = false
+            myLocationButton.image = UIImage(named: "myLocationButton-notSelected")
+            currentlyAnimatingToMyLocation = false
+        }
+    }
+    
+    // Save heading direction so it can be used for zoom view.
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        myHeading = newHeading.trueHeading
+    }
+    
+    // If the user changes their auth status for location tracking, enable the features.
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
+            self.myLocationButton.isHidden = false
+        }
+    }
+    
+    // If it is in myLocation mode, follow myLocation.
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if myLocationSelected == true,
+            currentlyAnimatingToMyLocation == false,
+            let coordinates = manager.location?.coordinate {
+                self.currentlyAnimatingToMyLocation = true
+                self.mapView.animate(toLocation: coordinates)
+        }
+    }
+    
     // Set the color of the Status Bar based on if it is in dark mode or not.
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if darkMode == true {
-            return .lightContent
-        } else {
-            return .default
-        }
+        return self.statusBarStyle
     }
     
     // Get vehicles when they are created. This loads all vehicles initially.
@@ -234,6 +239,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         }
     }
     
+    // Remove a marker from the map if it is removed from Firebase.
     func deleteMarker(vehicleId: Int64) {
         if let marker = markers[vehicleId] {
             marker.map = nil

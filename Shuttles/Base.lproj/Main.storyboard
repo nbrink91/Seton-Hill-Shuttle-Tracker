@@ -26,17 +26,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4kN-27-vyC" userLabel="Buttons">
-                                <rect key="frame" x="343" y="515" width="16" height="52"/>
+                                <rect key="frame" x="297" y="448" width="62" height="144"/>
                                 <subviews>
-                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myLocationButton-notSelected" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-y3-Sjm" userLabel="My Location Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myLocationButton-notSelected" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-y3-Sjm" userLabel="My Location Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="62" height="62"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="grs-N6-uGb" appends="YES" id="glz-Ca-bDf"/>
                                         </connections>
                                     </imageView>
                                     <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ePS-dF-KiU" userLabel="Menu Button">
-                                        <rect key="frame" x="0.0" y="36" width="16" height="16"/>
+                                        <rect key="frame" x="0.0" y="82" width="62" height="62"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="xOE-PJ-Xkp" appends="YES" id="MZg-oj-U3H"/>
@@ -47,7 +47,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4kN-27-vyC" secondAttribute="bottom" constant="100" id="8PL-Fe-pD1"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4kN-27-vyC" secondAttribute="bottom" constant="75" id="8PL-Fe-pD1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4kN-27-vyC" secondAttribute="trailing" id="PVv-5v-W77"/>
                             <constraint firstItem="e2a-Hg-hLL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Toy-DS-UPt"/>
                             <constraint firstAttribute="bottom" secondItem="e2a-Hg-hLL" secondAttribute="bottom" id="Tzo-gt-q4b"/>
@@ -96,7 +96,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSk-Su-kYI" userLabel="Menu View" customClass="MenuView" customModule="Shuttles" customModuleProvider="target">
-                                <rect key="frame" x="5" y="417" width="365" height="250"/>
+                                <rect key="frame" x="5" y="412" width="365" height="250"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkN-r5-EHg" userLabel="Title Stack View">
                                         <rect key="frame" x="20" y="20" width="325" height="34"/>
@@ -193,12 +193,12 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="3yH-Rd-EAf" secondAttribute="trailing" constant="40" id="2S1-9v-W5e"/>
                                     <constraint firstItem="NkN-r5-EHg" firstAttribute="top" secondItem="uSk-Su-kYI" secondAttribute="top" constant="20" id="4QS-GY-AAC"/>
                                     <constraint firstItem="7eQ-0d-gxi" firstAttribute="leading" secondItem="uSk-Su-kYI" secondAttribute="leading" constant="40" id="6fK-Mb-ckO"/>
-                                    <constraint firstAttribute="height" constant="250" id="TTP-vR-p3u"/>
+                                    <constraint firstAttribute="bottom" secondItem="7eQ-0d-gxi" secondAttribute="bottom" constant="28" id="76p-Rr-KXe"/>
                                     <constraint firstItem="3yH-Rd-EAf" firstAttribute="top" secondItem="NkN-r5-EHg" secondAttribute="bottom" constant="20" id="eMu-pX-rNc"/>
                                     <constraint firstItem="7eQ-0d-gxi" firstAttribute="top" secondItem="3yH-Rd-EAf" secondAttribute="bottom" constant="20" id="qyD-C6-J9D"/>
                                     <constraint firstAttribute="trailing" secondItem="7eQ-0d-gxi" secondAttribute="trailing" constant="40" id="r1C-Ht-Qu2"/>
@@ -210,7 +210,7 @@
                         </subviews>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="uSk-Su-kYI" secondAttribute="bottom" id="I5N-iG-j42"/>
+                            <constraint firstAttribute="bottom" secondItem="uSk-Su-kYI" secondAttribute="bottom" constant="5" id="I5N-iG-j42"/>
                             <constraint firstItem="Ndv-ku-SFT" firstAttribute="top" secondItem="Dpg-7q-Zoi" secondAttribute="top" id="ZGz-5q-Ort"/>
                             <constraint firstAttribute="trailing" secondItem="uSk-Su-kYI" secondAttribute="trailing" constant="5" id="bHk-nH-Yxc"/>
                             <constraint firstAttribute="trailing" secondItem="Ndv-ku-SFT" secondAttribute="trailing" id="bvh-ad-yta"/>
@@ -221,6 +221,7 @@
                     </view>
                     <connections>
                         <outlet property="mapType" destination="CwA-w9-pKi" id="8i0-6B-YQp"/>
+                        <outlet property="menuView" destination="uSk-Su-kYI" id="4pX-Ng-DTI"/>
                         <outlet property="shuttleCollectionView" destination="3yH-Rd-EAf" id="5y4-z9-iLb"/>
                         <segue destination="q9x-pz-MG2" kind="show" identifier="goToSchedule" id="mQF-ss-QWj"/>
                     </connections>
@@ -283,7 +284,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="infoIcon" width="16" height="16"/>
-        <image name="myLocationButton-notSelected" width="16" height="16"/>
+        <image name="infoIcon" width="62" height="62"/>
+        <image name="myLocationButton-notSelected" width="62" height="62"/>
     </resources>
 </document>

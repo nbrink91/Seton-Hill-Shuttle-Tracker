@@ -11,6 +11,9 @@ import Firebase
 import GoogleMaps
 
 class MenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    // Outlets
+    @IBOutlet weak var menuView: MenuView!
     @IBOutlet weak var mapType: UISegmentedControl!
     @IBOutlet weak var shuttleCollectionView: UICollectionView!
     
@@ -26,6 +29,12 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         
         loadShuttleSchedules()
+        
+        // Initialize View
+        let blurEffect = UIBlurEffect(style: .extraLight)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = menuView.frame
+        menuView.insertSubview(blurEffectView, at: 0)
         
         // Initialize Map Type.
         if let mapTypeIndex = UserDefaults.standard.string(forKey: "mapTypeIndex") {
@@ -121,6 +130,11 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 alert.dismiss(animated: true, completion: nil)
             }))
             
+            // Configure for iPad support
+            let popOver = alert.popoverPresentationController
+            popOver?.sourceView = collectionView.cellForItem(at: indexPath)
+            popOver?.sourceRect = (collectionView.cellForItem(at: indexPath)?.bounds)!
+            
             // Present the alert.
             self.present(alert, animated: true, completion: nil)
         }
@@ -132,6 +146,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.performSegue(withIdentifier: "goToSchedule", sender: self)
     }
     
+    // Dismiss the modal when the close button is tapped.
     @IBAction func closeTapped(_ sender: Any) {
         dismissMenu()
     }
@@ -143,9 +158,23 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // Change the map type based on selection.
     @IBAction func mapTypeTapped(_ sender: UISegmentedControl) {
-        self.mapViewController.mapView.mapType = ConfigurationService().mapType(index: sender.selectedSegmentIndex)
-        setNeedsStatusBarAppearanceUpdate()
+        let mapType = ConfigurationService().mapType(index: sender.selectedSegmentIndex)
+        
+        self.mapViewController.mapView.mapType = mapType
         UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "mapTypeIndex")
+        
+        switch mapType {
+        case kGMSTypeNormal:
+            self.mapViewController.statusBarStyle = .default
+            self.mapViewController.setNeedsStatusBarAppearanceUpdate()
+            break
+        case kGMSTypeHybrid:
+            self.mapViewController.statusBarStyle = .lightContent
+            self.mapViewController.setNeedsStatusBarAppearanceUpdate()
+            break
+        default:
+            break
+        }
     }
     
     // Dismiss the menu and return to map.

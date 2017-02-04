@@ -18,11 +18,11 @@ class MenuView: UIView {
         rectShape.position = self.center
         rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
         
-        layer.masksToBounds = true
-        layer.shadowRadius = 5
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 50
         layer.mask = rectShape
+        layer.masksToBounds = true
+        //layer.shadowRadius = 5
+        //layer.shadowColor = UIColor.black.cgColor
+        //layer.shadowOpacity = 50
         contentMode = .redraw
     }
 }
