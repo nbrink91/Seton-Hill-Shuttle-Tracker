@@ -16,6 +16,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var menuView: MenuView!
     @IBOutlet weak var mapType: UISegmentedControl!
     @IBOutlet weak var shuttleCollectionView: UICollectionView!
+    @IBOutlet weak var trafficSwitch: UISwitch!
     
     // Vars
     var shuttleSchedules: [Int64:Schedule] = [:]
@@ -41,11 +42,25 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
             mapType.selectedSegmentIndex = Int(mapTypeIndex)!
         }
         
+        trafficSwitch.setOn(UserDefaults.standard.bool(forKey: "trafficEnabled"), animated: false)
+        
         // Initialize the shuttle collection view.
         shuttleCollectionView.delegate = self
         shuttleCollectionView.dataSource = self
         shuttleCollectionView.backgroundColor = UIColor.clear
         shuttleCollectionView.backgroundView?.backgroundColor = UIColor.clear
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // Tutorial on how to open the shuttle menus.
+        let tutorialComplete = UserDefaults.standard.bool(forKey: "shuttleTutorialComplete")
+        if tutorialComplete != true {
+            let alert = UIAlertController(title: "Shuttle Tutorial", message: "To go to a shuttles location or view its schedules tap a shuttle below!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Thanks!", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true) {
+                UserDefaults.standard.set(true, forKey: "shuttleTutorialComplete")
+            }
+        }
     }
     
     // Load the Shuttle Schedules from Firebase and save it on the class as a dictionary to reuse.
@@ -199,5 +214,10 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 target.vehicle = self.scheduleVehicle
             }
         }
+    }
+    
+    @IBAction func trafficSwitchTapped(_ sender: UISwitch) {
+        self.mapViewController.mapView.isTrafficEnabled = sender.isOn
+        UserDefaults.standard.set(sender.isOn, forKey: "trafficEnabled")
     }
 }

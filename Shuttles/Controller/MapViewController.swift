@@ -84,6 +84,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             }
         }
         
+        // Initialize traffic!
+        mapView.isTrafficEnabled = UserDefaults.standard.bool(forKey: "trafficEnabled")
+        
         // Initialize things that use location.
         if  let latitude = firebaseConfigs.configValue(forKey: "default_latitude").numberValue as? Double,
             let longitude = firebaseConfigs.configValue(forKey: "default_longitude").numberValue as? Double,
@@ -277,6 +280,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         if segue.identifier == "MainToMenu" {
             if let target = segue.destination as? MenuViewController {
                 target.mapViewController = self
+                target.modalPresentationStyle = .overCurrentContext
             }
         }
     }
