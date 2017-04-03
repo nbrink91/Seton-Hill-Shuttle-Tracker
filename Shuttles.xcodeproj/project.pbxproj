@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C4082CB21E4640B700847734 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4082CB11E4640B700847734 /* GoogleService-Info.plist */; };
 		C41C51301E29CD1600C6C2BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C512F1E29CD1600C6C2BF /* AppDelegate.swift */; };
 		C41C51321E29CD1600C6C2BF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C51311E29CD1600C6C2BF /* MapViewController.swift */; };
 		C41C51351E29CD1600C6C2BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C41C51331E29CD1600C6C2BF /* Main.storyboard */; };
@@ -16,7 +15,6 @@
 		C41C51461E29D4C300C6C2BF /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C51451E29D4C300C6C2BF /* FirebaseService.swift */; };
 		C41C514C1E2AECE800C6C2BF /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C514B1E2AECE800C6C2BF /* Vehicle.swift */; };
 		C41C514E1E2AEE8100C6C2BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C514D1E2AEE8100C6C2BF /* Constants.swift */; };
-		C41C51511E2B010400C6C2BF /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */; };
 		C432CBDC1E3420460031A95B /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C432CBDB1E3420460031A95B /* Schedule.swift */; };
 		C44EFB7A1E317A2B0056F0BA /* Night.json in Resources */ = {isa = PBXBuildFile; fileRef = C44EFB791E317A2B0056F0BA /* Night.json */; };
 		C45CFAB41E319A22008F6EA2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */; };
@@ -28,11 +26,12 @@
 		C4899DA61E3C4D9B00DE9E79 /* ShuttleUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4899DA51E3C4D9B00DE9E79 /* ShuttleUIImageView.swift */; };
 		C4899DA81E3C5AED00DE9E79 /* ShuttleHeadingUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4899DA71E3C5AED00DE9E79 /* ShuttleHeadingUIView.swift */; };
 		F12E2DB01D06F6033170524F /* Pods_Shuttles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */; };
+		FFF48D6B1E8C50B000E855FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF48D6A1E8C50B000E855FA /* GoogleService-Info.plist */; };
+		FFF48D6D1E8C50BB00E855FA /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF48D6C1E8C50BB00E855FA /* RemoteConfigDefaults.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C48F86DEF197AA8C28B8F5C /* Pods-Shuttles.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shuttles.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles.release.xcconfig"; sourceTree = "<group>"; };
-		C4082CB11E4640B700847734 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C41C512C1E29CD1600C6C2BF /* Shuttles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuttles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41C512F1E29CD1600C6C2BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C41C51311E29CD1600C6C2BF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +42,6 @@
 		C41C51451E29D4C300C6C2BF /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		C41C514B1E2AECE800C6C2BF /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		C41C514D1E2AEE8100C6C2BF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RemoteConfigDefaults.plist; path = Shuttles/RemoteConfigDefaults.plist; sourceTree = SOURCE_ROOT; };
 		C432CBDB1E3420460031A95B /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		C44EFB791E317A2B0056F0BA /* Night.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Night.json; sourceTree = "<group>"; };
 		C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +54,8 @@
 		C4899DA71E3C5AED00DE9E79 /* ShuttleHeadingUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuttleHeadingUIView.swift; sourceTree = "<group>"; };
 		F14E79B4BB7F836A11F29512 /* Pods-Shuttles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shuttles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles.debug.xcconfig"; sourceTree = "<group>"; };
 		F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shuttles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFF48D6A1E8C50B000E855FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFF48D6C1E8C50BB00E855FA /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +118,8 @@
 				C41C51361E29CD1600C6C2BF /* Assets.xcassets */,
 				C41C51381E29CD1600C6C2BF /* LaunchScreen.storyboard */,
 				C41C513B1E29CD1600C6C2BF /* Info.plist */,
-				C4082CB11E4640B700847734 /* GoogleService-Info.plist */,
-				C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */,
+				FFF48D6A1E8C50B000E855FA /* GoogleService-Info.plist */,
+				FFF48D6C1E8C50BB00E855FA /* RemoteConfigDefaults.plist */,
 			);
 			path = Shuttles;
 			sourceTree = "<group>";
@@ -238,11 +238,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C41C513A1E29CD1600C6C2BF /* LaunchScreen.storyboard in Resources */,
-				C41C51511E2B010400C6C2BF /* RemoteConfigDefaults.plist in Resources */,
+				FFF48D6D1E8C50BB00E855FA /* RemoteConfigDefaults.plist in Resources */,
 				C41C51371E29CD1600C6C2BF /* Assets.xcassets in Resources */,
 				C44EFB7A1E317A2B0056F0BA /* Night.json in Resources */,
 				C41C51351E29CD1600C6C2BF /* Main.storyboard in Resources */,
-				C4082CB21E4640B700847734 /* GoogleService-Info.plist in Resources */,
+				FFF48D6B1E8C50B000E855FA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +266,7 @@
 		};
 		C432CBD61E33C3190031A95B /* Firebase Crash Reporting */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -274,7 +274,7 @@
 			name = "Firebase Crash Reporting";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "GOOGLE_APP_ID=1:966009760185:ios:058fc18acce6eb8d\n\n# Replace the /Path/To/ServiceAccount.json with the path to the key you just downloaded\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${HOME}/Desktop/FirebaseServiceAccount.json\"";
 		};
