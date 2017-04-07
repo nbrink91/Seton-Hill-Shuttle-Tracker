@@ -22,6 +22,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var shuttleSchedules: [Int64:Schedule] = [:]
     var scheduleUrl: String?
     var scheduleVehicle: Vehicle?
+    var visibleShuttles: [Vehicle] = []
     
     // Seque
     weak var mapViewController: MapViewController!
@@ -49,6 +50,17 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         shuttleCollectionView.dataSource = self
         shuttleCollectionView.backgroundColor = UIColor.clear
         shuttleCollectionView.backgroundView?.backgroundColor = UIColor.clear
+        
+        for vehicle in self.mapViewController.vehicles {
+            if let latitude = vehicle.value.latitude,
+                let longitude = vehicle.value.longitude {
+                let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                
+                if MapService().checkIfWithinBounds(mapView: self.mapViewController.mapView, coordinate: coordinate) {
+                    visibleShuttles += [vehicle.value]
+                }
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,19 +93,18 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // Set the number of items to the number of vehicles.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.mapViewController.vehicles.count
+        return visibleShuttles.count
     }
     
     // Render the cells.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "shuttleCell", for: indexPath) as! ShuttleCollectionViewCell
         
-        if let vehicle = self.vehicleFromIndex(index: indexPath.row) {
-            let image = UIImage(named: "shuttle")?.withRenderingMode(.alwaysTemplate)
-            cell.shuttleName.text = vehicle.deviceName
-            cell.shuttleImage.image = image
-            cell.shuttleImage.tintColor = vehicle.color
-        }
+        let vehicle = visibleShuttles[indexPath.row]
+        let image = UIImage(named: "shuttle")?.withRenderingMode(.alwaysTemplate)
+        cell.shuttleName.text = vehicle.deviceName
+        cell.shuttleImage.image = image
+        cell.shuttleImage.tintColor = vehicle.color
         
         return cell
     }
@@ -102,57 +113,56 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         // Get the vehicle for the pressed button.
-        if let vehicle = self.vehicleFromIndex(index: indexPath.row) {
+        let vehicle = visibleShuttles[indexPath.row]
             
-            // Build an alert on tap.
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        // Build an alert on tap.
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
             
-            // If go to shuttle is pressed, close the modal and go to the coordinates.
-            alert.addAction(UIAlertAction(title: "Go to Shuttle", style: UIAlertActionStyle.default, handler: { (data) in
-                let firebaseConfigs = FirebaseService().loadRemoteConfigs()
+        // If go to shuttle is pressed, close the modal and go to the coordinates.
+        alert.addAction(UIAlertAction(title: "Go to Shuttle", style: UIAlertActionStyle.default, handler: { (data) in
+            let firebaseConfigs = FirebaseService().loadRemoteConfigs()
                 
-                self.dismiss(animated: true, completion: {
-                    if let latitude = vehicle.latitude,
-                        let longitude = vehicle.longitude,
-                        let zoom = firebaseConfigs[CAMERA_CLOSE_ZOOM_KEY].numberValue {
-                        self.mapViewController?.mapView.camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
-                    }
-                })
+            self.dismiss(animated: true, completion: {
+                if let latitude = vehicle.latitude,
+                    let longitude = vehicle.longitude,
+                    let zoom = firebaseConfigs[CAMERA_CLOSE_ZOOM_KEY].numberValue {
+                    self.mapViewController?.mapView.camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
+                }
+            })
+        }))
+            
+        let schedule = shuttleSchedules[vehicle.deviceId]
+            
+        if (schedule?.allWeek != nil) {
+            alert.addAction(UIAlertAction(title: "View Schedule", style: UIAlertActionStyle.default, handler: { (data) in
+                self.segueToSchedule(url: (schedule?.allWeek!)!, vehicle: vehicle)
             }))
-            
-            let schedule = shuttleSchedules[vehicle.deviceId]
-            
-            if (schedule?.allWeek != nil) {
-                alert.addAction(UIAlertAction(title: "View Schedule", style: UIAlertActionStyle.default, handler: { (data) in
-                    self.segueToSchedule(url: (schedule?.allWeek!)!, vehicle: vehicle)
-                }))
-            }
-
-            if (schedule?.weekday != nil) {
-                alert.addAction(UIAlertAction(title: "View Weekday Schedule", style: UIAlertActionStyle.default, handler: { (data) in
-                    self.segueToSchedule(url: (schedule?.weekday!)!, vehicle: vehicle)
-                }))
-            }
-            
-            if (schedule?.weekend != nil) {
-                alert.addAction(UIAlertAction(title: "View Weekend Schedule", style: UIAlertActionStyle.default, handler: { (data) in
-                    self.segueToSchedule(url: (schedule?.weekend!)!, vehicle: vehicle)
-                }))
-            }
-            
-            // Close the alert.
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: { (data) in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            
-            // Configure for iPad support
-            let popOver = alert.popoverPresentationController
-            popOver?.sourceView = collectionView.cellForItem(at: indexPath)
-            popOver?.sourceRect = (collectionView.cellForItem(at: indexPath)?.bounds)!
-            
-            // Present the alert.
-            self.present(alert, animated: true, completion: nil)
         }
+
+        if (schedule?.weekday != nil) {
+            alert.addAction(UIAlertAction(title: "View Weekday Schedule", style: UIAlertActionStyle.default, handler: { (data) in
+                self.segueToSchedule(url: (schedule?.weekday!)!, vehicle: vehicle)
+            }))
+        }
+            
+        if (schedule?.weekend != nil) {
+            alert.addAction(UIAlertAction(title: "View Weekend Schedule", style: UIAlertActionStyle.default, handler: { (data) in
+                self.segueToSchedule(url: (schedule?.weekend!)!, vehicle: vehicle)
+            }))
+        }
+            
+        // Close the alert.
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: { (data) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+            
+        // Configure for iPad support
+        let popOver = alert.popoverPresentationController
+        popOver?.sourceView = collectionView.cellForItem(at: indexPath)
+        popOver?.sourceRect = (collectionView.cellForItem(at: indexPath)?.bounds)!
+            
+        // Present the alert.
+        self.present(alert, animated: true, completion: nil)
     }
     
     func segueToSchedule(url: String, vehicle: Vehicle) {
@@ -178,33 +188,20 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapViewController.mapView.mapType = mapType
         UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "mapTypeIndex")
         
-        switch mapType {
-        case kGMSTypeNormal:
-            self.mapViewController.statusBarStyle = .default
-            self.mapViewController.setNeedsStatusBarAppearanceUpdate()
-            break
-        case kGMSTypeHybrid:
+        if mapType == GMSMapViewType.hybrid {
             self.mapViewController.statusBarStyle = .lightContent
-            self.mapViewController.setNeedsStatusBarAppearanceUpdate()
-            break
-        default:
-            break
+        } else if mapType == GMSMapViewType.normal && self.mapViewController.nightMode == true {
+            self.mapViewController.statusBarStyle = .lightContent
+        } else if mapType == GMSMapViewType.normal && self.mapViewController.nightMode == false {
+            self.mapViewController.statusBarStyle = .default
         }
+        
+        self.mapViewController.setNeedsStatusBarAppearanceUpdate()
     }
     
     // Dismiss the menu and return to map.
     func dismissMenu() -> Void {
         dismiss(animated: true) {}
-    }
-    
-    // Get a vehicle if it exists at a given index.
-    func vehicleFromIndex(index: Int) -> Vehicle? {
-        if  let values = self.mapViewController?.vehicles.values {
-            let vehicle = Array(values)[index]
-            return vehicle
-        }
-        
-        return nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

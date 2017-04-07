@@ -12,11 +12,11 @@ class ConfigurationService {
     func mapType(index: Int) -> GMSMapViewType {
         switch index {
         case 0:
-            return kGMSTypeNormal
+            return GMSMapViewType.normal
         case 1:
-            return kGMSTypeHybrid
+            return GMSMapViewType.hybrid
         default:
-            return kGMSTypeNormal
+            return GMSMapViewType.hybrid
         }
     }
 }

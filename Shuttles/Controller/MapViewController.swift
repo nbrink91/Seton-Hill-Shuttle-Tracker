@@ -28,6 +28,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     var FIR_REF: FIRDatabaseReference!
     var FIR_REF_VEHICLES: FIRDatabaseReference!
     var statusBarStyle: UIStatusBarStyle  = .default
+    var nightMode = false
     
     // Colors
     var markerColors: [UIColor] = [
@@ -78,7 +79,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         if let mapTypeIndex = UserDefaults.standard.string(forKey: "mapTypeIndex") {
             mapView.mapType = ConfigurationService().mapType(index: Int(mapTypeIndex)!)
             
-            if mapView.mapType == kGMSTypeHybrid {
+            if mapView.mapType == GMSMapViewType.hybrid {
                 self.statusBarStyle = .lightContent
                 setNeedsStatusBarAppearanceUpdate()
             }
@@ -100,6 +101,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
                     if let styleURL = Bundle.main.url(forResource: "Night", withExtension: "json") {
                         mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
                         self.statusBarStyle = .lightContent
+                        self.nightMode = true
                         setNeedsStatusBarAppearanceUpdate()
                     } else {
                         print("Unable to find the night style.")
@@ -280,7 +282,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         if segue.identifier == "MainToMenu" {
             if let target = segue.destination as? MenuViewController {
                 target.mapViewController = self
-                target.modalPresentationStyle = .overCurrentContext
             }
         }
     }

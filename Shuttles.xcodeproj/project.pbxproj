@@ -17,6 +17,7 @@
 		C41C514C1E2AECE800C6C2BF /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C514B1E2AECE800C6C2BF /* Vehicle.swift */; };
 		C41C514E1E2AEE8100C6C2BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41C514D1E2AEE8100C6C2BF /* Constants.swift */; };
 		C41C51511E2B010400C6C2BF /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */; };
+		C423EEBB1E49464C007EADF9 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C423EEBA1E49464C007EADF9 /* MapService.swift */; };
 		C432CBDC1E3420460031A95B /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C432CBDB1E3420460031A95B /* Schedule.swift */; };
 		C44EFB7A1E317A2B0056F0BA /* Night.json in Resources */ = {isa = PBXBuildFile; fileRef = C44EFB791E317A2B0056F0BA /* Night.json */; };
 		C45CFAB41E319A22008F6EA2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */; };
@@ -27,11 +28,13 @@
 		C4899DA01E3C45FD00DE9E79 /* ShuttlePointerUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4899D9F1E3C45FD00DE9E79 /* ShuttlePointerUIImageView.swift */; };
 		C4899DA61E3C4D9B00DE9E79 /* ShuttleUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4899DA51E3C4D9B00DE9E79 /* ShuttleUIImageView.swift */; };
 		C4899DA81E3C5AED00DE9E79 /* ShuttleHeadingUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4899DA71E3C5AED00DE9E79 /* ShuttleHeadingUIView.swift */; };
-		F12E2DB01D06F6033170524F /* Pods_Shuttles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */; };
+		E8CDFECFFC3FC2C71876E814 /* Pods_Shuttles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF76D9EA1799FFB17DCA261 /* Pods_Shuttles.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2C48F86DEF197AA8C28B8F5C /* Pods-Shuttles.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shuttles.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles.release.xcconfig"; sourceTree = "<group>"; };
+		2CF76D9EA1799FFB17DCA261 /* Pods_Shuttles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shuttles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3032A941BD6A75EB1B538F7 /* Pods-Shuttles.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shuttles.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles.release.xcconfig"; sourceTree = "<group>"; };
+		BC3C17489D49BB020D272590 /* Pods-Shuttles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shuttles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles.debug.xcconfig"; sourceTree = "<group>"; };
 		C4082CB11E4640B700847734 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C41C512C1E29CD1600C6C2BF /* Shuttles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuttles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41C512F1E29CD1600C6C2BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		C41C514B1E2AECE800C6C2BF /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		C41C514D1E2AEE8100C6C2BF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C41C51501E2B010400C6C2BF /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RemoteConfigDefaults.plist; path = Shuttles/RemoteConfigDefaults.plist; sourceTree = SOURCE_ROOT; };
+		C423EEBA1E49464C007EADF9 /* MapService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
 		C432CBDB1E3420460031A95B /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		C44EFB791E317A2B0056F0BA /* Night.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Night.json; sourceTree = "<group>"; };
 		C45CFAB31E319A22008F6EA2 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -54,8 +58,6 @@
 		C4899D9F1E3C45FD00DE9E79 /* ShuttlePointerUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuttlePointerUIImageView.swift; sourceTree = "<group>"; };
 		C4899DA51E3C4D9B00DE9E79 /* ShuttleUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuttleUIImageView.swift; sourceTree = "<group>"; };
 		C4899DA71E3C5AED00DE9E79 /* ShuttleHeadingUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuttleHeadingUIView.swift; sourceTree = "<group>"; };
-		F14E79B4BB7F836A11F29512 /* Pods-Shuttles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shuttles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles.debug.xcconfig"; sourceTree = "<group>"; };
-		F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shuttles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,37 +65,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F12E2DB01D06F6033170524F /* Pods_Shuttles.framework in Frameworks */,
+				E8CDFECFFC3FC2C71876E814 /* Pods_Shuttles.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A38BBD676141C84C91B7B5C /* Pods */ = {
+		2B5AED049B70CE10CFE0C0D2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F14E79B4BB7F836A11F29512 /* Pods-Shuttles.debug.xcconfig */,
-				2C48F86DEF197AA8C28B8F5C /* Pods-Shuttles.release.xcconfig */,
+				BC3C17489D49BB020D272590 /* Pods-Shuttles.debug.xcconfig */,
+				B3032A941BD6A75EB1B538F7 /* Pods-Shuttles.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		847ABF2A472C037F8C2C75C4 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F8D1C78995AECDD5E1D9423E /* Pods_Shuttles.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C41C51231E29CD1600C6C2BF = {
 			isa = PBXGroup;
 			children = (
 				C41C512E1E29CD1600C6C2BF /* Shuttles */,
-				3A38BBD676141C84C91B7B5C /* Pods */,
 				C41C512D1E29CD1600C6C2BF /* Products */,
-				847ABF2A472C037F8C2C75C4 /* Frameworks */,
+				2B5AED049B70CE10CFE0C0D2 /* Pods */,
+				F817BDBA655F273AFC8D367D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +155,7 @@
 				C41C51451E29D4C300C6C2BF /* FirebaseService.swift */,
 				C41C514D1E2AEE8100C6C2BF /* Constants.swift */,
 				C45CFAB91E31A67E008F6EA2 /* ConfigurationService.swift */,
+				C423EEBA1E49464C007EADF9 /* MapService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -173,6 +168,14 @@
 			path = MapStyles;
 			sourceTree = "<group>";
 		};
+		F817BDBA655F273AFC8D367D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CF76D9EA1799FFB17DCA261 /* Pods_Shuttles.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -180,13 +183,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C41C513E1E29CD1600C6C2BF /* Build configuration list for PBXNativeTarget "Shuttles" */;
 			buildPhases = (
-				0EF5D9CE6CD9373762CED730 /* [CP] Check Pods Manifest.lock */,
+				1B59B5679117427A5D5FB8A7 /* [CP] Check Pods Manifest.lock */,
 				C41C51281E29CD1600C6C2BF /* Sources */,
 				C41C51291E29CD1600C6C2BF /* Frameworks */,
 				C41C512A1E29CD1600C6C2BF /* Resources */,
-				F41AC530608210D3D6BAE3CC /* [CP] Embed Pods Frameworks */,
-				C8DA14DE120CC6CAC441FB0D /* [CP] Copy Pods Resources */,
 				C432CBD61E33C3190031A95B /* Firebase Crash Reporting */,
+				166034500D484EB5F04EAAD7 /* [CP] Embed Pods Frameworks */,
+				FCE94D32E9E9A05A16A08CE7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -249,7 +252,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0EF5D9CE6CD9373762CED730 /* [CP] Check Pods Manifest.lock */ = {
+		166034500D484EB5F04EAAD7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B59B5679117427A5D5FB8A7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -278,7 +296,7 @@
 			shellPath = /bin/sh;
 			shellScript = "GOOGLE_APP_ID=1:966009760185:ios:058fc18acce6eb8d\n\n# Replace the /Path/To/ServiceAccount.json with the path to the key you just downloaded\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${HOME}/Desktop/FirebaseServiceAccount.json\"";
 		};
-		C8DA14DE120CC6CAC441FB0D /* [CP] Copy Pods Resources */ = {
+		FCE94D32E9E9A05A16A08CE7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -293,21 +311,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F41AC530608210D3D6BAE3CC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shuttles/Pods-Shuttles-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -320,6 +323,7 @@
 				C4899DA01E3C45FD00DE9E79 /* ShuttlePointerUIImageView.swift in Sources */,
 				C432CBDC1E3420460031A95B /* Schedule.swift in Sources */,
 				C462F8991E35359E00465A32 /* ScheduleViewController.swift in Sources */,
+				C423EEBB1E49464C007EADF9 /* MapService.swift in Sources */,
 				C45CFAB41E319A22008F6EA2 /* MenuViewController.swift in Sources */,
 				C45CFABC1E31AFEC008F6EA2 /* ShuttleCollectionViewCell.swift in Sources */,
 				C41C514C1E2AECE800C6C2BF /* Vehicle.swift in Sources */,
@@ -449,7 +453,7 @@
 		};
 		C41C513F1E29CD1600C6C2BF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F14E79B4BB7F836A11F29512 /* Pods-Shuttles.debug.xcconfig */;
+			baseConfigurationReference = BC3C17489D49BB020D272590 /* Pods-Shuttles.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -468,7 +472,7 @@
 		};
 		C41C51401E29CD1600C6C2BF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C48F86DEF197AA8C28B8F5C /* Pods-Shuttles.release.xcconfig */;
+			baseConfigurationReference = B3032A941BD6A75EB1B538F7 /* Pods-Shuttles.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
