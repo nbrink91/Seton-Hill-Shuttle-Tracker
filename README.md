@@ -2,7 +2,8 @@
 
 Provide student and staff with a way to check a campus shuttles current location and schedule.
 
-![Shuttle Tracker Screenshot](ShuttleTracker.png)
+![Shuttle Tracker Traffic Screenshot](ShuttleTrackerUp1.png)
+![Shuttle Tracker Hybrid Screenshot](ShuttleTrackerUp2.png)]
 ![Shuttle Tracker Menu Screenshot](ShuttleTrackerMenu.png)
 
 ## Features

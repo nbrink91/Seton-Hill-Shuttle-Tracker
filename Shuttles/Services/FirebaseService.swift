@@ -12,9 +12,7 @@ import Firebase
 class FirebaseService {
     func loadRemoteConfigs() -> FIRRemoteConfig {
         let remoteConfig = FIRRemoteConfig.remoteConfig()
-        //let remoteConfigSettings = FIRRemoteConfigSettings(developerModeEnabled: true)
         remoteConfig.setDefaultsFromPlistFileName("RemoteConfigDefaults")
-        //remoteConfig.configSettings = remoteConfigSettings!
         remoteConfig.fetch(withExpirationDuration: TimeInterval(60)) { (status, error) -> Void in
             if status == .success {
                 remoteConfig.activateFetched()
