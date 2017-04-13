@@ -24,6 +24,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     var statusBarStyle: UIStatusBarStyle  = .default
     var nightMode = false
     
+    // Location
+    @IBOutlet weak var myLocationButton: UIImageView!
+    let locationManager = CLLocationManager()
+    
     // Colors
     var markerColors: [UIColor] = [
         UIColor.init(red: 183/255, green: 28/255, blue: 28/255, alpha: 0.87),
@@ -48,14 +52,24 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         watchForVehicleCreation()
         watchForVehicleChange()
         watchForVehicleDelete()
+        
+        // Ask for location and enable tracking if that is true.
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() && CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            myLocationButton.isHidden = false
+        }
     }
+    
     
     // Initialize the map.
     func initMapView() {
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
         mapView.settings.compassButton = true
-        mapView.padding = UIEdgeInsetsMake(20, 0, 0, 0)
+        mapView.padding = UIEdgeInsetsMake(20, 20, 20, 20)
         
         // Set the map type if it is in the config.
         if let mapTypeIndex = UserDefaults.standard.string(forKey: "mapTypeIndex") {
@@ -202,6 +216,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             let color = markerColors[currentMarkerColorIndex]
             currentMarkerColorIndex += 1
             return color
+        }
+    }
+    
+    // Go to current location.
+    @IBAction func myLocationButtonTapped(_ sender: Any) {
+        if let location = self.locationManager.location?.coordinate {
+            mapView.animate(toLocation: location)
         }
     }
     

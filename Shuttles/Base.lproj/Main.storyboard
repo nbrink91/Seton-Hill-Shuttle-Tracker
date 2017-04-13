@@ -26,13 +26,20 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4kN-27-vyC" userLabel="Buttons">
-                                <rect key="frame" x="327" y="599" width="62" height="62"/>
+                                <rect key="frame" x="332" y="512" width="62" height="144"/>
                                 <subviews>
                                     <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ePS-dF-KiU" userLabel="Menu Button">
                                         <rect key="frame" x="0.0" y="0.0" width="62" height="62"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="xOE-PJ-Xkp" appends="YES" id="MZg-oj-U3H"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myLocationButton" translatesAutoresizingMaskIntoConstraints="NO" id="a9t-1h-lv8" userLabel="My Location Button">
+                                        <rect key="frame" x="0.0" y="82" width="62" height="62"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="grs-N6-uGb" appends="YES" id="mp3-tz-BMC"/>
                                         </connections>
                                     </imageView>
                                 </subviews>
@@ -43,29 +50,30 @@
                             <constraint firstItem="e2a-Hg-hLL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Toy-DS-UPt"/>
                             <constraint firstAttribute="bottom" secondItem="e2a-Hg-hLL" secondAttribute="bottom" id="Tzo-gt-q4b"/>
                             <constraint firstItem="e2a-Hg-hLL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Xqb-Ht-aaX"/>
-                            <constraint firstAttribute="bottom" secondItem="4kN-27-vyC" secondAttribute="bottom" constant="75" id="g0f-ya-2Qb"/>
-                            <constraint firstAttribute="trailing" secondItem="4kN-27-vyC" secondAttribute="trailing" constant="25" id="jRU-JY-dv7"/>
+                            <constraint firstAttribute="bottom" secondItem="4kN-27-vyC" secondAttribute="bottom" constant="80" id="g0f-ya-2Qb"/>
+                            <constraint firstAttribute="trailing" secondItem="4kN-27-vyC" secondAttribute="trailing" constant="20" id="jRU-JY-dv7"/>
                             <constraint firstAttribute="trailing" secondItem="e2a-Hg-hLL" secondAttribute="trailing" id="xYL-AP-bqf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="e2a-Hg-hLL" id="WSr-G2-UD8"/>
                         <outlet property="menuButton" destination="ePS-dF-KiU" id="pCU-eI-ysw"/>
+                        <outlet property="myLocationButton" destination="a9t-1h-lv8" id="ioQ-kW-Z9L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="grs-N6-uGb" userLabel="My Location Button Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="myLocationButtonTapped:" destination="BYZ-38-t0r" id="ARR-Sg-Xi8"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <tapGestureRecognizer id="xOE-PJ-Xkp" userLabel="Menu Button Tap Gesture Recognizer">
                     <connections>
                         <segue destination="LSX-LX-X3j" kind="presentation" identifier="MainToMenu" id="cT9-EQ-5My"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="grs-N6-uGb" userLabel="My Location Button Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="myLocationButtonTapped:" destination="BYZ-38-t0r" id="vXV-5l-xLp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="136.23188405797103" y="138.58695652173915"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="bN5-Nx-tQ1">
@@ -195,6 +203,7 @@
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zBg-tt-ggL">
                                                 <rect key="frame" x="275" y="0.0" width="51" height="31"/>
+                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <action selector="trafficSwitchTapped:" destination="LSX-LX-X3j" eventType="valueChanged" id="lCP-LN-Zqm"/>
                                                 </connections>
@@ -202,7 +211,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="0.98999999999999999" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="RQj-TY-fEN" firstAttribute="top" secondItem="7eQ-0d-gxi" secondAttribute="bottom" constant="20" id="1og-8G-pGX"/>
                                     <constraint firstAttribute="trailing" secondItem="3yH-Rd-EAf" secondAttribute="trailing" constant="40" id="2S1-9v-W5e"/>
@@ -300,5 +309,6 @@
     </scenes>
     <resources>
         <image name="infoIcon" width="62" height="62"/>
+        <image name="myLocationButton" width="62" height="62"/>
     </resources>
 </document>
