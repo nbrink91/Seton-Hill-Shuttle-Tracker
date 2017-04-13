@@ -16,12 +16,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     // Constants
     let firebaseConfigs = FirebaseService().loadRemoteConfigs()
     
-    // Location
-    let locationManager = CLLocationManager()
-    var myHeading: Double = 0
-    var myLocationSelected = false
-    var currentlyAnimatingToMyLocation = false
-    
     // Variables
     var markers: [Int64:GMSMarker] = [:]
     var vehicles: [Int64:Vehicle] = [:]
@@ -42,7 +36,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     // Outlets
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var myLocationButton: UIImageView!
     @IBOutlet weak var menuButton: UIImageView!
     
     override func viewDidLoad() {
@@ -55,16 +48,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         watchForVehicleCreation()
         watchForVehicleChange()
         watchForVehicleDelete()
-        
-        // Ask for location and enable tracking if that is true.
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() && CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-            locationManager.startUpdatingHeading()
-            self.myLocationButton.isHidden = false
-        }
     }
     
     // Initialize the map.
@@ -109,24 +92,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
                     print("Unable to load the night style. \(error)")
                 }
             }
-        }
-    }
-    
-    // Handle event that occur when the map stops at a position.
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        // Handle pressing myLocationButton
-        if currentlyAnimatingToMyLocation == true {
-            currentlyAnimatingToMyLocation = false
-            myLocationSelected = true
-        }
-    }
-    
-    // Handle event that occur when the position changes.
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        if myLocationSelected == true {
-            myLocationSelected = false
-            myLocationButton.image = UIImage(named: "myLocationButton-notSelected")
-            currentlyAnimatingToMyLocation = false
         }
     }
     
