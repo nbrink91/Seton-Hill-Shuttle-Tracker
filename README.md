@@ -2,9 +2,8 @@
 
 Provide student and staff with a way to check a campus shuttles current location and schedule.
 
-![Shuttle Tracker Traffic Screenshot](ShuttleTrackerUp1.PNG)
-![Shuttle Tracker Hybrid Screenshot](ShuttleTrackerUp2.PNG)
-![Shuttle Tracker Menu Screenshot](ShuttleTrackerSide.PNG)
+<img src="ShuttleTrackerUp1.PNG" alt="Shuttle Tracker Traffic Screenshot" width="40%">
+<img src="ShuttleTrackerUp2.PNG" alt="Shuttle Tracker Hybrid Screenshot" width="40%"><img src="ShuttleTrackerSide.PNG" alt="Shuttle Tracker Menu Screenshot">
 
 ## Features
 * Utilizes Firebase to push changes to all iOS devices with the app currently open. This occurs nearly instantly when data in Firebase is changed.
