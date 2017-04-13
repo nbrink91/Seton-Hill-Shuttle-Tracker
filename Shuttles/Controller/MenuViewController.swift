@@ -117,34 +117,40 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         // Build an alert on tap.
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-            
-        // If go to shuttle is pressed, close the modal and go to the coordinates.
-        alert.addAction(UIAlertAction(title: "Go to Shuttle", style: UIAlertActionStyle.default, handler: { (data) in
-            let firebaseConfigs = FirebaseService().loadRemoteConfigs()
+        
+        // Verify that the map is on the map.
+        if vehicle.movedRecently {
+            // If go to shuttle is pressed, close the modal and go to the coordinates.
+            alert.addAction(UIAlertAction(title: "Go to Shuttle", style: UIAlertActionStyle.default, handler: { (data) in
+                let firebaseConfigs = FirebaseService().loadRemoteConfigs()
                 
-            self.dismiss(animated: true, completion: {
-                if let latitude = vehicle.latitude,
-                    let longitude = vehicle.longitude,
-                    let zoom = firebaseConfigs[CAMERA_CLOSE_ZOOM_KEY].numberValue {
-                    self.mapViewController?.mapView.camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
-                }
-            })
-        }))
-            
+                self.dismiss(animated: true, completion: {
+                    if let latitude = vehicle.latitude,
+                        let longitude = vehicle.longitude,
+                        let zoom = firebaseConfigs[CAMERA_CLOSE_ZOOM_KEY].numberValue {
+                        self.mapViewController?.mapView.camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
+                    }
+                })
+            }))
+        }
+        
         let schedule = shuttleSchedules[vehicle.deviceId]
-            
+        
+        // Show the all week schedule.
         if (schedule?.allWeek != nil) {
             alert.addAction(UIAlertAction(title: "View Schedule", style: UIAlertActionStyle.default, handler: { (data) in
                 self.segueToSchedule(url: (schedule?.allWeek!)!, vehicle: vehicle)
             }))
         }
 
+        // Show the weekday schedule.
         if (schedule?.weekday != nil) {
             alert.addAction(UIAlertAction(title: "View Weekday Schedule", style: UIAlertActionStyle.default, handler: { (data) in
                 self.segueToSchedule(url: (schedule?.weekday!)!, vehicle: vehicle)
             }))
         }
-            
+        
+        // Show the weekend schedule.
         if (schedule?.weekend != nil) {
             alert.addAction(UIAlertAction(title: "View Weekend Schedule", style: UIAlertActionStyle.default, handler: { (data) in
                 self.segueToSchedule(url: (schedule?.weekend!)!, vehicle: vehicle)

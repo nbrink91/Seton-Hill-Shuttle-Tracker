@@ -136,5 +136,10 @@ class Vehicle {
         return _power
     }
     
+    // Check if the vehicle was moved within the last x amount of time.
+    var movedRecently: Bool {
+        return MapService().lastMovedCheck(vehicle: self)
+    }
+    
     var color: UIColor?
 }

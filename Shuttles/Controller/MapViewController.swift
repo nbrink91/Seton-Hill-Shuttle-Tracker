@@ -56,7 +56,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         watchForVehicleChange()
         watchForVehicleDelete()
         
-        
         // Ask for location and enable tracking if that is true.
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() && CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -113,20 +112,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         }
     }
     
-    // My Location Button Handler
-    @IBAction func myLocationButtonTapped(_ sender: Any) {
-        if myLocationSelected == false || currentlyAnimatingToMyLocation == false,
-            let coordinates = mapView.myLocation?.coordinate {
-            currentlyAnimatingToMyLocation = true
-            myLocationButton.image = UIImage(named: "myLocationButton-selected")
-            mapView.animate(toLocation: coordinates)
-        } else {
-            myLocationSelected = false
-            myLocationButton.image = UIImage(named: "myLocationButton-notSelected")
-            currentlyAnimatingToMyLocation = false
-        }
-    }
-    
     // Handle event that occur when the map stops at a position.
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         // Handle pressing myLocationButton
@@ -142,32 +127,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             myLocationSelected = false
             myLocationButton.image = UIImage(named: "myLocationButton-notSelected")
             currentlyAnimatingToMyLocation = false
-        }
-    }
-    
-    // Save heading direction so it can be used for zoom view.
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        myHeading = newHeading.trueHeading
-    }
-    
-    // If the user changes their auth status for location tracking, enable the features.
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-            locationManager.startUpdatingHeading()
-            self.myLocationButton.isHidden = false
-        }
-    }
-    
-    // If it is in myLocation mode, follow myLocation.
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if myLocationSelected == true,
-            currentlyAnimatingToMyLocation == false,
-            let coordinates = manager.location?.coordinate {
-                self.currentlyAnimatingToMyLocation = true
-                self.mapView.animate(toLocation: coordinates)
         }
     }
     
@@ -213,35 +172,34 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     // Create or update an existing marker with new vehicle data.
     func updateMarker(vehicle: Vehicle) {
-        // Verify that the shuttle has been updated recently. If not, don't display it.
-        if MapService().lastMovedCheck(vehicle: vehicle) == false {
-            return
-        }
-        
         if  let latitude = vehicle.latitude,
             let longitude = vehicle.longitude {
             
             let marker = getMarker(vehicle: vehicle)
-            marker.tracksInfoWindowChanges = true
-            marker.position = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
-            marker.map = mapView
-            marker.isFlat = true
-            marker.title = vehicle.deviceName
             
-            if let heading = vehicle.heading {
-                // Show direction arrow and rotate marker.
-                marker.rotation = CLLocationDegrees(heading)
-                let shuttleView = ShuttleHeadingUIView(color: vehicle.color!)
-                marker.iconView = shuttleView
-                let point = CGPoint(x: 0.5, y: 0.67)
-                marker.groundAnchor = point
-                marker.infoWindowAnchor = point
-            } else {
-                // Don't show direction if there is no vehicle heading.
-                marker.iconView = ShuttleUIImageView(color: vehicle.color!)
-                let point = CGPoint(x: 0.5, y: 0.5)
-                marker.groundAnchor = point
-                marker.infoWindowAnchor = point
+            // Verify that the shuttle has been updated recently. If not, don't display it.
+            if vehicle.movedRecently {
+                marker.tracksInfoWindowChanges = true
+                marker.position = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+                marker.map = mapView
+                marker.isFlat = true
+                marker.title = vehicle.deviceName
+            
+                if let heading = vehicle.heading {
+                    // Show direction arrow and rotate marker.
+                    marker.rotation = CLLocationDegrees(heading)
+                    let shuttleView = ShuttleHeadingUIView(color: vehicle.color!)
+                    marker.iconView = shuttleView
+                    let point = CGPoint(x: 0.5, y: 0.67)
+                    marker.groundAnchor = point
+                    marker.infoWindowAnchor = point
+                } else {
+                    // Don't show direction if there is no vehicle heading.
+                    marker.iconView = ShuttleUIImageView(color: vehicle.color!)
+                    let point = CGPoint(x: 0.5, y: 0.5)
+                    marker.groundAnchor = point
+                    marker.infoWindowAnchor = point
+                }
             }
             
             markers[vehicle.deviceId] = marker
