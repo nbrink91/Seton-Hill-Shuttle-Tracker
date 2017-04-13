@@ -284,7 +284,7 @@
 		};
 		C432CBD61E33C3190031A95B /* Firebase Crash Reporting */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -292,7 +292,7 @@
 			name = "Firebase Crash Reporting";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "GOOGLE_APP_ID=1:966009760185:ios:058fc18acce6eb8d\n\n# Replace the /Path/To/ServiceAccount.json with the path to the key you just downloaded\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${HOME}/Desktop/FirebaseServiceAccount.json\"";
 		};

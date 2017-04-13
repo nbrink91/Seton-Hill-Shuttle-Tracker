@@ -20,4 +20,17 @@ class MapService {
         
         return false
     }
+    
+    // Verify that the shuttle has moved within the last 'maxMinutes'
+    func lastMovedCheck(vehicle: Vehicle, maxMinutes: Int = 10) -> Bool {
+        if let lastMoved = vehicle.lastMoved {
+            let secondsDiff = Int(Date().timeIntervalSince(lastMoved))
+            
+            if secondsDiff <= maxMinutes * 60 {
+                return true
+            }
+        }
+        
+        return false
+    }
 }

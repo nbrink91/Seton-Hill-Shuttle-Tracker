@@ -213,6 +213,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     // Create or update an existing marker with new vehicle data.
     func updateMarker(vehicle: Vehicle) {
+        // Verify that the shuttle has been updated recently. If not, don't display it.
+        if MapService().lastMovedCheck(vehicle: vehicle) == false {
+            return
+        }
+        
         if  let latitude = vehicle.latitude,
             let longitude = vehicle.longitude {
             

@@ -20,7 +20,7 @@ class FirebaseService {
                 remoteConfig.activateFetched()
             } else {
                 print("Config not fetched")
-                print("Error \(error)")
+                print("Error \(String(describing: error))")
             }
         }
         return remoteConfig
