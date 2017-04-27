@@ -1,6 +1,7 @@
 .idea
 Shuttles/GoogleService-Info.plist
 Shuttles/RemoteConfigDefaults.plist
+Shuttles/FirebaseServiceAccount.json
 Pods
 .DS_Store
 Shuttles.xcworkspace/xcuserdata/*
