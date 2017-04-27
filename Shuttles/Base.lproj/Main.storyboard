@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,18 +25,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4kN-27-vyC" userLabel="Buttons">
-                                <rect key="frame" x="394" y="512" width="0.0" height="0.0"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4kN-27-vyC" userLabel="Buttons">
+                                <rect key="frame" x="332" y="512" width="62" height="144"/>
                                 <subviews>
-                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ePS-dF-KiU" userLabel="Menu Button">
-                                        <rect key="frame" x="-394" y="-656" width="62" height="0.0"/>
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ePS-dF-KiU" userLabel="Menu Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="62" height="62"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="xOE-PJ-Xkp" appends="YES" id="MZg-oj-U3H"/>
                                         </connections>
                                     </imageView>
-                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="myLocationButton" translatesAutoresizingMaskIntoConstraints="NO" id="a9t-1h-lv8" userLabel="My Location Button">
-                                        <rect key="frame" x="-394" y="-656" width="62" height="0.0"/>
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myLocationButton" translatesAutoresizingMaskIntoConstraints="NO" id="a9t-1h-lv8" userLabel="My Location Button">
+                                        <rect key="frame" x="0.0" y="82" width="62" height="62"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="grs-N6-uGb" appends="YES" id="mp3-tz-BMC"/>

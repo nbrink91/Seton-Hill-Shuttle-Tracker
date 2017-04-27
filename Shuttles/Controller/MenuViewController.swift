@@ -109,14 +109,14 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return cell
     }
     
-    // When an item is selected zoom to the shuttle.
+    // When an item is selected show a menu to go to the shuttle or view the schedule.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         // Get the vehicle for the pressed button.
         let vehicle = visibleShuttles[indexPath.row]
             
         // Build an alert on tap.
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alert = UIAlertController(title: vehicle.deviceName, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         // Verify that the map is on the map.
         if vehicle.movedRecently {
@@ -132,6 +132,8 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     }
                 })
             }))
+        } else {
+            alert.message = "Shuttle location is not available."
         }
         
         let schedule = shuttleSchedules[vehicle.deviceId]
@@ -210,6 +212,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         dismiss(animated: true) {}
     }
     
+    // Pass data to the schedule.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToSchedule" {
             if let target = segue.destination as? ScheduleViewController {
@@ -219,6 +222,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    // Toggle traffic.
     @IBAction func trafficSwitchTapped(_ sender: UISwitch) {
         self.mapViewController.mapView.isTrafficEnabled = sender.isOn
         UserDefaults.standard.set(sender.isOn, forKey: "trafficEnabled")
