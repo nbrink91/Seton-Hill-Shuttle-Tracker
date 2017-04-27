@@ -1,5 +1,4 @@
 .idea
-Shuttles.xcodeproj/project.pbxproj
 Shuttles/GoogleService-Info.plist
 Shuttles/RemoteConfigDefaults.plist
 Shuttles/FirebaseServiceAccount.json
