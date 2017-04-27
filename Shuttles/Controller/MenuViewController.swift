@@ -52,14 +52,7 @@ class MenuViewController: UIViewController, UICollectionViewDelegate, UICollecti
         shuttleCollectionView.backgroundView?.backgroundColor = UIColor.clear
         
         for vehicle in self.mapViewController.vehicles {
-            if let latitude = vehicle.value.latitude,
-                let longitude = vehicle.value.longitude {
-                let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                
-                if MapService().checkIfWithinBounds(mapView: self.mapViewController.mapView, coordinate: coordinate) {
-                    visibleShuttles += [vehicle.value]
-                }
-            }
+            visibleShuttles += [vehicle.value]
         }
     }
     
