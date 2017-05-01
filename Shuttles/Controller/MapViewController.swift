@@ -21,7 +21,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     var vehicles: [Int64:Vehicle] = [:]
     var FIR_REF: FIRDatabaseReference!
     var FIR_REF_VEHICLES: FIRDatabaseReference!
-    var statusBarStyle: UIStatusBarStyle  = .default
+    var statusBarStyle: UIStatusBarStyle = .default
     var nightMode = false
     
     // Location
@@ -54,15 +54,45 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         watchForVehicleDelete()
         
         // Ask for location and enable tracking if that is true.
+        locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() && CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-            myLocationButton.isHidden = false
-        }
+        enableLocation(status: CLLocationManager.authorizationStatus())
     }
     
+    // Show the button when auth status changes for location tracking.
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        enableLocation(status: status)
+    }
+    
+    // Manage an individuals location on the map and whether or not the button should show.
+    func enableLocation(status: CLAuthorizationStatus) -> Void {
+        switch status {
+            case .notDetermined:
+                // If status has not yet been determied, ask for authorization
+                locationManager.requestWhenInUseAuthorization()
+                break
+            case .authorizedWhenInUse:
+                // If authorized when in use
+                locationManager.startUpdatingLocation()
+                myLocationButton.isHidden = false
+                break
+            case .authorizedAlways:
+                // If always authorized
+                locationManager.startUpdatingLocation()
+                myLocationButton.isHidden = false
+                break
+            case .restricted:
+                // If restricted by e.g. parental controls. User can't enable Location Services
+                myLocationButton.isHidden = true
+                break
+            case .denied:
+                // If user denied your app access to Location Services, but can grant access from Settings.
+                myLocationButton.isHidden = true
+                break
+            default:
+                break
+        }
+    }
     
     // Initialize the map.
     func initMapView() {
