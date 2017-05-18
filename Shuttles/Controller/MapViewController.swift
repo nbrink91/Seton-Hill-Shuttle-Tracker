@@ -89,8 +89,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
                 // If user denied your app access to Location Services, but can grant access from Settings.
                 myLocationButton.isHidden = true
                 break
-            default:
-                break
         }
     }
     
